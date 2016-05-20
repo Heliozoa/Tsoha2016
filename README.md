@@ -2,9 +2,10 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/tulokset/)
+* [Linkki dokumentaatiooni](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
 
 ## Työn aihe
+Taistelupelien tulospalveluun voi kirjata eri taistelupelien turnausten kulkua ja tuloksia.
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Sivustolla voi selata joko tällä hetkellä käynnissä olevia turnauksia, viimeisimpiä tuloksia tai esim. valita pelin, jonka turnauksia haluaa tarkastella. Rekisteröityneet käyttäjät voivat luoda omia turnauksiaan.
