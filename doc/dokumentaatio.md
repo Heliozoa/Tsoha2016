@@ -21,9 +21,10 @@ Sivuston omistaja. Ylläpitäjä on myös kirjautunut.
 ####Turnauksen järjestäjä
 Käyttäjä, jolla on turnauksen päivitysavain. Voi olla Kirjautumaton tai Kirjautunut.
 
+##Käyttötapaukset
+
 ![Käyttötapaukset](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/k%C3%A4ytt%C3%B6kaavio.png)
 
-##Käyttötapaukset
 ####Kaikille tarjolla olevat käyttötapaukset
 
 #####Turnausten selaus:
