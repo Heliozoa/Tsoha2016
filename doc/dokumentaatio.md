@@ -58,7 +58,7 @@ Ylläpitäjä voi poistaa käyttäjän.
 
 ##Järjestelmän tietosisältö
 
-![Käsitekaavio](temp)
+![Käsitekaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/k%C3%A4sitekaavio.png)
 
 ####Tietokohde: Peli
 Attribuutti|Arvojoukko|Kuvailu
@@ -81,4 +81,4 @@ Nimi|Merkkijono|Nimi
 Pelaajat|Merkkijono|Ottelun osapuolet
 Tulos|Merkkijono|Ottelun lopputulos
 
-![Relaatiotietokantakaavio](temp)
+![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)
