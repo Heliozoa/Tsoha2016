@@ -65,20 +65,31 @@ Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
 Nimi|Merkkijono|Nimi
 Tiedot|Merkkijono|Lyhyt kuvaus, julkaisuvuosi jne.
+Taistelupeli, jota pelataan turnauksissa.
 
-####Tietokohde: Turnaus
+####Tietokohde: Turnaustapahtuma
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
 Nimi|Merkkijono|Nimi
 Paikka|Merkkijono|Tapahtumapaikka
 Aika|Aika|Tapahtuma-aika
-Tulokset|Merkkijono?|Turnauksen loppusijoitukset, jotain muuta tilastoja?
+Päivitysavain|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
+Tapahtuma, jossa voidaan pelata turnauksia yhdestä tai useammasta pelistä.
+
+####Tietokohde: Turnaus
+Attribuutti|Arvojoukko|Kuvailu
+----|----|----
+Tulokset|String Array|Turnauksen loppusijoitukset
+Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Turnauksen jälkeen tiedetään sen loppusijoitukset. Toimii myös liitostauluna.
 
 ####Tietokohde: Ottelu
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
 Nimi|Merkkijono|Nimi
-Pelaajat|Merkkijono|Ottelun osapuolet
-Tulos|Merkkijono|Ottelun lopputulos
+Pelaaja1|Merkkijono|Ottelun osapuoli
+Pelaaja2|Merkkijono|Ottelun osapuoli
+Voittaja|Int 1 tai 2|Voittajan numero
+Tulos|Merkkijono|Ottelun lopputulos, esim. 3-2
+Yksittäinen ottelu, joka on osa jotakin turnausta.
 
 ![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)
