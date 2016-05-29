@@ -1,11 +1,11 @@
 ##Johdanto
-Taistelupelien tulospalveluun (Hiihtokisojen tulospalvelu) voi kirjata eri taistelupelien turnausten kulkua ja tuloksia.
+Taistelupelien turnauspalvelussa (Hiihtokisojen tulospalvelu) voi seurata eri taistelupelien turnausten kulkua ja tuloksia.
 
 Sivustolla voi selata joko tällä hetkellä käynnissä olevia turnauksia, viimeisimpiä tuloksia tai esim. valita pelin, jonka turnauksia haluaa tarkastella. Rekisteröityneet käyttäjät voivat lisätä omia turnauksia, mutta vain ylläpitäjä voi lisätä uusia pelejä.
 
-Turnauksen luoja saa avaimen, jota käyttämällä myös muut järjestäjät voivat kirjautumatta ylläpitää tuloksia. Ainoastaan turnauksen luoja voi tehdä isompia muutoksia, esim. muuttaa virheellisiä tietoja. Pelkkien tulosten lisäksi palveluun kirjataan myös, mitä hahmoja pelaajat ovat käyttäneet, jolloin tiedoista voidaan muodostaa erilaisia kiinnostavia tilastoja. Myös mahdollisuus lisätä embed streamiin käynnissäoleville turnauksille ja videoita jo päättyneille olisi kiva.
+Turnauksen luoja saa avaimen, jota käyttämällä myös muut järjestäjät voivat kirjautumatta ylläpitää tuloksia. Ainoastaan turnauksen luoja voi tehdä isompia muutoksia, esim. muuttaa virheellisiä tietoja. Pelkkien tulosten lisäksi palveluun kirjataan myös, mitä hahmoja pelaajat ovat käyttäneet, jolloin tiedoista voidaan muodostaa erilaisia kiinnostavia tilastoja. Käynnissä oleviin turnauksiin voi lisätä stream-embedin ja loppuneille videon.
 
-En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md.
+En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md. **Fokus siirtyi viikolla 2 enemmän turnausten katsomiseen jälkeenpäin videoiden avulla.**
 
 
 ##Käyttäjäryhmät
@@ -74,6 +74,8 @@ Nimi|Merkkijono|Nimi
 Paikka|Merkkijono|Tapahtumapaikka
 Aloituspäivä|Date|Päivä jona turnaus alkaa
 Lopetuspäivä|Date|Päivä jona turnaus loppuu
+Live|Boolean|Onko turnauksesta käynnissä stream
+Stream URLS|Array String|Streamien osoitteet
 Päivitysavain|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
 Tapahtuma, jossa voidaan pelata turnauksia yhdestä tai useammasta pelistä.
 
@@ -86,10 +88,13 @@ Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Tu
 ####Tietokohde: Ottelu
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
+Nimi|Merkkijon|Ottelun nimi, esim. 'Grand Finals', 'Winners Finals' tai 'Top 32'
 Pelaaja1|Merkkijono|Ottelun osapuoli
 Pelaaja2|Merkkijono|Ottelun osapuoli
 Voittaja1|Boolean|Voittiko pelaaja 1
 Tulos|Merkkijono|Ottelun lopputulos, esim. 3-2
+Järjestys|Luku|Luku, joka kertoo missä järjestyksessä ottelut tulee näyttää (Finaalit viimeisenä, semifinaalit toiseksiviimeisenä, jne.)
+Video URL|Merkkijono|Linkki videoon tai streamiin ottelusta.
 Yksittäinen ottelu, joka on osa jotakin turnausta.
 
 ![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)

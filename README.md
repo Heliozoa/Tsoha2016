@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/tulokset/)
+* [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/turnaukset/)
 * [Linkki dokumentaatiooni](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
 
 ## Työn aihe
