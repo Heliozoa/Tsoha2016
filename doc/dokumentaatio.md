@@ -54,3 +54,31 @@ Ylläpitäjä voi muokata kaikkia turnauksia, ei vain itse luomiaan.
 
 #####Käyttäjien poisto:
 Ylläpitäjä voi poistaa käyttäjän.
+
+
+##Järjestelmän tietosisältö
+
+![Käsitekaavio](temp)
+
+####Tietokohde: Peli
+Attribuutti|Arvojoukko|Kuvailu
+----|----|----
+Nimi|Merkkijono|Nimi
+Tiedot|Merkkijono|Lyhyt kuvaus, julkaisuvuosi jne.
+
+####Tietokohde: Turnaus
+Attribuutti|Arvojoukko|Kuvailu
+----|----|----
+Nimi|Merkkijono|Nimi
+Paikka|Merkkijono|Tapahtumapaikka
+Aika|Aika|Tapahtuma-aika
+Tulokset|Merkkijono?|Turnauksen loppusijoitukset, jotain muuta tilastoja?
+
+####Tietokohde: Ottelu
+Attribuutti|Arvojoukko|Kuvailu
+----|----|----
+Nimi|Merkkijono|Nimi
+Pelaajat|Merkkijono|Ottelun osapuolet
+Tulos|Merkkijono|Ottelun lopputulos
+
+![Relaatiotietokantakaavio](temp)
