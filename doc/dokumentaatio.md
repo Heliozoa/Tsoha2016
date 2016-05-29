@@ -72,7 +72,8 @@ Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
 Nimi|Merkkijono|Nimi
 Paikka|Merkkijono|Tapahtumapaikka
-Aika|Aika|Tapahtuma-aika
+Aloituspäivä|Date|Päivä jona turnaus alkaa
+Lopetuspäivä|Date|Päivä jona turnaus loppuu
 Päivitysavain|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
 Tapahtuma, jossa voidaan pelata turnauksia yhdestä tai useammasta pelistä.
 
@@ -85,10 +86,9 @@ Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Tu
 ####Tietokohde: Ottelu
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Nimi|Merkkijono|Nimi
 Pelaaja1|Merkkijono|Ottelun osapuoli
 Pelaaja2|Merkkijono|Ottelun osapuoli
-Voittaja|Int 1 tai 2|Voittajan numero
+Voittaja1|Boolean|Voittiko pelaaja 1
 Tulos|Merkkijono|Ottelun lopputulos, esim. 3-2
 Yksittäinen ottelu, joka on osa jotakin turnausta.
 
