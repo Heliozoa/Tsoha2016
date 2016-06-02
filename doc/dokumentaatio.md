@@ -23,7 +23,7 @@ Käyttäjä, jolla on turnauksen päivitysavain. Voi olla Kirjautumaton tai Kirj
 
 ##Käyttötapaukset
 
-![Käyttötapaukset](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/k%C3%A4ytt%C3%B6kaavio.png)
+![Käyttötapaukset](https://github.com/Heliozoa/mulk muTsoha-Bootstrap/blob/master/doc/k%C3%A4ytt%C3%B6kaavio.png)
 
 ####Kaikille tarjolla olevat käyttötapaukset
 

@@ -2,8 +2,8 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/turnaukset/)
-* [Linkki dokumentaatiooni](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
+* [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/tournaments/)
+* [Linkki dokumentaatiooni (osin vähän vanhentunut, work in progress)](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
 
 ## Työn aihe
 Taistelupelien tulospalveluun voi kirjata eri taistelupelien turnausten kulkua ja tuloksia.
