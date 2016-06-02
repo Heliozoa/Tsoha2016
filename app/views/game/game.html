@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{game.name}} <a href="{{base_path}}/games/{{game.id}}/edit"><button class="btn btn-default">Edit</button></a></h1>
+    <section>{{game.info}}</section>
+    
+    <h2>Tournaments</h2>
+    
+    <ul style="list-style-type:none">
+        {% for event in events %}
+            <li><a href="{{base_path}}/events/{{event.id}}">{{event.name}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

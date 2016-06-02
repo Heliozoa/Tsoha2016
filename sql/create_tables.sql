@@ -1,37 +1,37 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
-CREATE TABLE Peli(
+CREATE TABLE Game(
     id SERIAL PRIMARY KEY,
-    nimi        varchar(40)     NOT NULL,
-    tiedot      text
-)
+    name        varchar(40)     NOT NULL,
+    info        text
+);
 
-CREATE TABLE Turnaustapahtuma(
+CREATE TABLE Event(
     id SERIAL PRIMARY KEY,
-    nimi        varchar(40)     NOT NULL,
-    paikka      varchar(40),
-    aloituspv   DATE,
-    lopetuspv   DATE,
-    live        boolean NOT NULL,
+    name        varchar(40)     NOT NULL,
+    location    varchar(40),
+    start_date  DATE,
+    end_date    DATE,
+    live        boolean         NOT NULL,
     stream_urls varchar(20)[],
-    avain       INTEGER         NOT NULL
-)
+    update_key  varchar(10)     NOT NULL
+);
 
-CREATE TABLE Turnaus(
+CREATE TABLE Tournament(
     id SERIAL PRIMARY KEY,
-    turnaustapahtuma_id INTEGER REFERENCES Turnaustapahtuma(id),
-    peli_id INTEGER REFERENCES Peli(id),
-    tulokset    varchar(20)[]
-)
+    event_id    INTEGER REFERENCES Event(id),
+    game_id     INTEGER REFERENCES Game(id),
+    results     varchar(20)[]
+);
 
-CREATE TABLE Ottelu(
+CREATE TABLE Fight(
     id SERIAL PRIMARY KEY,
-    turnaus_id INTEGER REFERENCES Turnaus(id)
-    nimi        varchar(20)     NOT NULL,
-    pelaaja1    varchar(20)     NOT NULL,
-    pelaaja2    varchar(20)     NOT NULL,
-    jarjestys   INTEGER         NOT NULL,
-    voittaja1   boolean,
+    tournament_id INTEGER REFERENCES Tournament(id),
+    name        varchar(20)     NOT NULL,
+    player1     varchar(20)     NOT NULL,
+    player2     varchar(20)     NOT NULL,
+    ordering    INTEGER         NOT NULL,
+    winner1     boolean,
     video_url   varchar(20),
     timecode    varchar(10)     DEFAULT ('0m0s'),
-    tulos       varchar(20)
-)
+    results     varchar(20)
+);

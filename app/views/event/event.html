@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{event.name}}</h1>
+
+{% for tournament in tournaments %}
+    <h2>{{tournament.game.name}}</h2>
+    
+{% endfor %}
+{% endblock %}

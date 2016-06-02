@@ -9,37 +9,25 @@
   });
 
   $routes->get('/games', function() {
-    HelloWorldController::games();
+    GameController::index();
   });
   
-  $routes->get('/tournaments', function() {
-    HelloWorldController::tournaments();
+  $routes->post('/games/:id', function($id) {
+    GameController::update($id);
+  });
+  
+  $routes->get('/games/:id', function($id){
+    GameController::show($id);
   });
 
-  $routes->get('/login', function() {
-    HelloWorldController::login();
-  });
-
-  $routes->get('/register', function() {
-    HelloWorldController::register();
+  $routes->get('/games/:id/edit', function($id){
+    GameController::edit($id);
   });
   
-  $routes->get('/evo16', function() {
-    HelloWorldController::evo16();
+  $routes->get('/past_events', function() {
+    EventController::past();
   });
   
-  $routes->get('/evo15', function() {
-    HelloWorldController::evo15();
-  });
-  
-  $routes->get('/tournament-edit', function() {
-    HelloWorldController::tournament_edit();
-  });
-  
-  $routes->get('/game', function() {
-    HelloWorldController::game();
-  });
-  
-  $routes->get('/game-edit', function() {
-    HelloWorldController::game_edit();
+  $routes->get('/events/:id', function($id) {
+    EventController::show($id);
   });

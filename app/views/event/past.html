@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Past Events</h1>
+    
+<button class="btn btn-default">Filter</button><br><br>
+
+<ul style="list-style-type:none">
+    {% for event in events %}
+    <a href="{{base_path}}/events/{{event.id}}"><li>{{event.name}}</li></a>
+    {% endfor %}
+</ul>
+{% endblock %}

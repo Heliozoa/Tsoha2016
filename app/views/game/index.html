@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Games</h1>
+    
+    <ul style="list-style-type:none">
+        {% for game in games %}
+            <li><a href="{{base_path}}/games/{{game.id}}">{{game.name}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
