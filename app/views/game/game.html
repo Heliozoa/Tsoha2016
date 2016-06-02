@@ -7,6 +7,9 @@
     <h2>Tournaments</h2>
     
     <ul style="list-style-type:none">
+        {% if events is empty %}
+            <li>No tournaments found</li>
+        {% endif %}
         {% for event in events %}
             <li><a href="{{base_path}}/events/{{event.id}}">{{event.name}}</a></li>
         {% endfor %}

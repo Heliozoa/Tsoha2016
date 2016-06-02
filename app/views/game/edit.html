@@ -4,12 +4,20 @@
     <h1>Editing: {{game.name}}</h1>
     
 <form method="post" action="{{base_path}}/games/{{game.id}}">
+    
     <div class="form-group">
         <label>Name</label>
         <input name="name" value="{{game.name}}" class="form-control" type="text">
-    </div>
-    <div class="form-group">
+        
+        <label>Info</label>
+        <input name="info" value="{{game.info}}" class="form-control" type="text">
+        
+        <br>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
+</form>
+
+<form method="post" action="{{base_path}}/games/{{game.id}}/delete">
+    <button type="submit" class="btn btn-danger">Delete</button>
 </form>
 {% endblock %}

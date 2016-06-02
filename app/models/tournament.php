@@ -11,18 +11,8 @@ class Tournament extends BaseModel{
         $query = DB::connection()->prepare('SELECT * FROM Tournament');
         $query->execute();
         $rows = $query->fetchAll();
-        $tournament = array();
         
-        foreach($rows as $row){
-            $tournament[] = new Tournament(array(
-                'id' => $row['id'],
-                'event' => Event::find($row['event_id']),
-                'game' => Game::find($row['game_id']),
-                'results' => $row['results']
-            ));
-        }
-        
-        return $tournament;
+        return Tournament::makeAll($rows);
     }
     
     public static function find($id){
@@ -30,6 +20,36 @@ class Tournament extends BaseModel{
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         
+        Tournament::make($row);
+    }
+    
+    public static function event($event_id){
+        $query = DB::connection()->prepare('SELECT * FROM Tournament WHERE event_id = :event_id');
+        $query->execute(array('event_id' => $event_id));
+        $rows = $query->fetchAll();
+        
+        return Tournament::makeAll($rows);
+    }
+    
+    public static function game($game_id){
+        $query = DB::connection()->prepare('SELECT * FROM Tournament WHERE game_id = :game_id');
+        $query->execute(array('game_id' => $game_id));
+        $rows = $query->fetchAll();
+        
+        return Tournament::makeAll($rows);
+    }
+    
+    private static function makeAll($rows){
+        $tournament = array();
+        
+        foreach($rows as $row){
+            $tournament[] = Tournament::make($row);
+        }
+        
+        return $tournament;
+    }
+    
+    private static function make($row){
         if($row){
             $tournament = new Tournament(array(
                 'id' => $row['id'],
@@ -43,23 +63,5 @@ class Tournament extends BaseModel{
         }
         
         return null;
-    }
-    
-    public static function game($game_id){
-        $query = DB::connection()->prepare('SELECT * FROM Tournament WHERE game_id = :game_id');
-        $query->execute(array('game_id' => $game_id));
-        $rows = $query->fetchAll();
-        $tournament = array();
-        
-        foreach($rows as $row){
-            $tournament[] = new Tournament(array(
-                'id' => $row['id'],
-                'event' => Event::find($row['event_id']),
-                'game' => Game::find($row['game_id']),
-                'results' => $row['results']
-            ));
-        }
-        
-        return $tournament;
     }
 }

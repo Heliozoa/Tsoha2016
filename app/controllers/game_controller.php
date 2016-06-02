@@ -17,6 +17,10 @@ class GameController extends BaseController{
         View::make('game/edit.html', array('game' => $game));
     }
     
+    public static function delete($id){
+        Game::delete($id);
+    }
+    
     public static function update($id){
         $params = $_POST;
         $params['id'] = $id;

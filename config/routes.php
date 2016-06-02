@@ -16,6 +16,10 @@
     GameController::update($id);
   });
   
+  $routes->post('/games/:id/delete', function($id) {
+    GameController::delete($id);
+  });
+  
   $routes->get('/games/:id', function($id){
     GameController::show($id);
   });

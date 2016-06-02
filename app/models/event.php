@@ -11,22 +11,8 @@ class Event extends BaseModel{
         $query = DB::connection()->prepare('SELECT * FROM Event');
         $query->execute();
         $rows = $query->fetchAll();
-        $events = array();
         
-        foreach($rows as $row){
-            $events[] = new Event(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'location' => $row['location'],
-                'start_date' => $row['start_date'],
-                'end_date' => $row['end_date'],
-                'live' => $row['live'],
-                'stream_urls' => $row['stream_urls'],
-                'update_key' => $row['update_key']
-            ));
-        }
-        
-        return $events;
+        return Event::makeAll($rows);
     }
     
     public static function find($id){
@@ -34,75 +20,53 @@ class Event extends BaseModel{
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         
-        if($row){
-            $event = new Event(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'location' => $row['location'],
-                'start_date' => $row['start_date'],
-                'end_date' => $row['end_date'],
-                'live' => $row['live'],
-                'stream_urls' => $row['stream_urls'],
-                'update_key' => $row['update_key']
-            ));
-            
-            return $event;
-        
-        }
-        
-        return null;
+        return Event::make($row);
     }
     
     public static function past(){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = false');
         $query->execute();
         $rows = $query->fetchAll();
-        $events = array();
         
-        foreach($rows as $row){
-            $events[] = make($row);
-        }
-        
-        return $events;
+        return Event::makeAll($rows);
     }
     
     public static function game($game_id){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE id IN (
                                            SELECT event_id FROM Tournament WHERE game_id = :game_id)');
         $query->execute(array('game_id' => $game_id));
-        $row = $query->fetchAll();
+        $rows = $query->fetchAll();
         
-        if($row){
-            $event = new Event(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'location' => $row['location'],
-                'start_date' => $row['start_date'],
-                'end_date' => $row['end_date'],
-                'live' => $row['live'],
-                'stream_urls' => $row['stream_urls'],
-                'update_key' => $row['update_key']
-            ));
-            
-            return $event;
+        return Event::makeAll($rows);
+    }
+    
+    
+    private static function makeAll($rows){
+        $events = array();
         
+        foreach($rows as $row){
+            $events[] = Event::make($row);
         }
         
-        return null;
+        return $events;
     }
     
     private static function make($row){
-        $event = new Event(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'location' => $row['location'],
-                'start_date' => $row['start_date'],
-                'end_date' => $row['end_date'],
-                'live' => $row['live'],
-                'stream_urls' => $row['stream_urls'],
-                'update_key' => $row['update_key']
-        ));
+        if($row){
+            $event = new Event(array(
+                    'id' => $row['id'],
+                    'name' => $row['name'],
+                    'location' => $row['location'],
+                    'start_date' => $row['start_date'],
+                    'end_date' => $row['end_date'],
+                    'live' => $row['live'],
+                    'stream_urls' => $row['stream_urls'],
+                    'update_key' => $row['update_key']
+            ));
+            
+            return $event;
+        }
         
-        return $event;
+        return null;
     }
 }

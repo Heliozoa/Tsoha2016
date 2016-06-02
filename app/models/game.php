@@ -10,40 +10,51 @@ class Game extends BaseModel {
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Game');
         $query->execute();
-        $rivit = $query->fetchAll();
-        $pelit = array();
+        $rows = $query->fetchAll();
         
-        foreach($rivit as $rivi){
-            $pelit[] = new Game(array(
-                'id' => $rivi['id'],
-                'name' => $rivi['name'],
-                'info' => $rivi['info']
-            ));
-        }
-        
-        return $pelit;
+        return Game::makeAll($rows);
     }
     
     public static function find($id){
         $query = DB::connection()->prepare('SELECT * FROM Game WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
-        $rivi = $query->fetch();
+        $row = $query->fetch();
         
-        if($rivi){
+        return Game::make($row);
+    }
+    
+    public static function update($params){
+        $query = DB::connection()->prepare('UPDATE Game SET name = :name, info = :info WHERE id = :id');
+        $query->execute($params);
+    }
+    
+    public static function delete($id){
+        $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
+        $query->execute(array('id' => $id));
+        Redirect::to('/games');
+    }
+    
+    private static function makeAll($rows){
+        $games = array();
+        
+        foreach($rows as $row){
+            $games[] = Game::make($row);    
+        }
+        
+        return $games;
+    }
+    
+    private static function make($row){
+        if($row){
             $game = new Game(array(
-                'id' => $rivi['id'],
-                'name' => $rivi['name'],
-                'info' => $rivi['info']
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'info' => $row['info']
             ));
             
             return $game;
         }
         
         return null;
-    }
-    
-    public static function update($params){
-        $query = DB::connection()->prepare('UPDATE Game SET name = :name WHERE id = :id');
-        $query->execute($params);
     }
 }
