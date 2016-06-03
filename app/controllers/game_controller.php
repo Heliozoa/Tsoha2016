@@ -17,14 +17,25 @@ class GameController extends BaseController{
         View::make('game/edit.html', array('game' => $game));
     }
     
+    public static function newGame(){
+        View::make('game/new.html');
+    }
+    
+    public static function add(){
+        $params = $_POST;
+        $id = Game::add($params);
+        Redirect::to('/games/'.$id);
+    }
+    
     public static function delete($id){
         Game::delete($id);
+        Redirect::to('/games');
     }
     
     public static function update($id){
         $params = $_POST;
         $params['id'] = $id;
         Game::update($params);
-        GameController::show($id);
+        Redirect::to('/games/'.$params['id']);
     }
 }

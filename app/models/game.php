@@ -23,6 +23,13 @@ class Game extends BaseModel {
         return Game::make($row);
     }
     
+    public static function add($params){
+        $query = DB::connection()->prepare('INSERT INTO Game (name, info) VALUES (:name, :info) RETURNING id');
+        $query->execute($params);
+        $row = $query->fetch();
+        return $row['id'];
+    }
+    
     public static function update($params){
         $query = DB::connection()->prepare('UPDATE Game SET name = :name, info = :info WHERE id = :id');
         $query->execute($params);
@@ -31,7 +38,6 @@ class Game extends BaseModel {
     public static function delete($id){
         $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
         $query->execute(array('id' => $id));
-        Redirect::to('/games');
     }
     
     private static function makeAll($rows){

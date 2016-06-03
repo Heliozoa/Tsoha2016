@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="float:left">
+        <h1>Live Tournaments</h1>
+        
+        <ul style="list-style-type:none">
+            {% for event in live %}
+            <li><a href="{{base_path}}/events/{{event.id}}">{{event.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div style="float:right">
+        <h1>Most Recent</h1>
+        
+        <ul style="list-style-type:none">
+            {% for event in past %}
+            <li><a href="{{base_path}}/events/{{event.id}}">{{event.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

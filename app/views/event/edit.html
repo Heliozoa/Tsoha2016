@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{event.name}}  <a href="{{base_path}}/events/{{event.id}}/edit"><button class="btn btn-default">Edit</button></a></h1>
+<h1>Editing {{event.name}} </h1>
 
 <section>
-    {% for tournament in event.tournaments %}
+    {% for tournament in tournaments %}
         <button id="{{tournament.game.id}}" onclick="show('{{tournament.game.id}}')" class="btn btn-default">{{tournament.game.name}}</button>
     {% endfor %}
 </section>

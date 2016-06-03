@@ -1,7 +1,7 @@
 <?php
 
 class Tournament extends BaseModel{
-    public $id, $event, $game, $results;
+    public $id, $event, $game, $results, $fights;
     
     public function __construct($attributes){
         parent::__construct($attributes);
@@ -37,6 +37,10 @@ class Tournament extends BaseModel{
         $rows = $query->fetchAll();
         
         return Tournament::makeAll($rows);
+    }
+    
+    public function getFights(){
+        $this->fights = Fight::tournament($this->id);
     }
     
     private static function makeAll($rows){

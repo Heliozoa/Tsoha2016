@@ -1,7 +1,7 @@
 <?php
 
 class Event extends BaseModel{
-    public $id, $name, $location, $start_date, $end_date, $live, $stream_urls, $update_key;
+    public $id, $name, $location, $start_date, $end_date, $live, $stream_urls, $update_key, $tournaments;
     
     public function __construct($attributes){
         parent::__construct($attributes);
@@ -31,6 +31,14 @@ class Event extends BaseModel{
         return Event::makeAll($rows);
     }
     
+    public static function live(){
+        $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = true');
+        $query->execute();
+        $rows = $query->fetchAll();
+        
+        return Event::makeAll($rows);
+    }
+    
     public static function game($game_id){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE id IN (
                                            SELECT event_id FROM Tournament WHERE game_id = :game_id)');
@@ -38,6 +46,10 @@ class Event extends BaseModel{
         $rows = $query->fetchAll();
         
         return Event::makeAll($rows);
+    }
+    
+    public function getTournaments(){
+        $this->tournaments = Tournament::event($this->id);
     }
     
     
