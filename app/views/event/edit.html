@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Editing {{event.name}} </h1>
+<h1>Editing {{event.name}} <button class="btn btn-danger">Delete</button></h1>
 
 <section>
-    {% for tournament in tournaments %}
-        <button id="{{tournament.game.id}}" onclick="show('{{tournament.game.id}}')" class="btn btn-default">{{tournament.game.name}}</button>
+    <button class="btn btn-default">Add game</button>
+    {% for tournament in event.tournaments %}
+        <h2>{{tournament.game.name}} <button class="btn btn-default">Add fight</button> <button class="btn btn-danger">Delete</button></h2>
+        {% for fight in tournament.fights %}
+            <h3>{{fight.name}} <button class="btn btn-default">Edit</button> <button class="btn btn-danger">Delete</button></h3>
+        {% endfor %}
     {% endfor %}
 </section>
     

@@ -8,7 +8,7 @@ class Event extends BaseModel{
     }
     
     public static function all(){
-        $query = DB::connection()->prepare('SELECT * FROM Event');
+        $query = DB::connection()->prepare('SELECT * FROM Event ORDER BY end_date DESC');
         $query->execute();
         $rows = $query->fetchAll();
         
@@ -24,7 +24,7 @@ class Event extends BaseModel{
     }
     
     public static function past(){
-        $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = false');
+        $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = false ORDER BY end_date DESC');
         $query->execute();
         $rows = $query->fetchAll();
         
@@ -32,7 +32,7 @@ class Event extends BaseModel{
     }
     
     public static function live(){
-        $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = true');
+        $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = true ORDER BY end_date DESC');
         $query->execute();
         $rows = $query->fetchAll();
         

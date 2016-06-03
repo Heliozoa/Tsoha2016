@@ -8,7 +8,7 @@ class Game extends BaseModel {
     }
     
     public static function all(){
-        $query = DB::connection()->prepare('SELECT * FROM Game');
+        $query = DB::connection()->prepare('SELECT * FROM Game ORDER BY name');
         $query->execute();
         $rows = $query->fetchAll();
         
