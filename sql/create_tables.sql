@@ -32,6 +32,6 @@ CREATE TABLE Fight(
     ordering    INTEGER         NOT NULL,
     winner1     boolean,
     video_url   varchar(20),
-    timecode    varchar(10)     DEFAULT ('0m0s'),
+    timecode    INTEGER         DEFAULT (0),
     results     varchar(20)
 );

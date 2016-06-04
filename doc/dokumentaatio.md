@@ -60,41 +60,42 @@ Ylläpitäjä voi poistaa käyttäjän.
 
 ![Käsitekaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/k%C3%A4sitekaavio.png)
 
-####Tietokohde: Peli
+####Tietokohde: Game
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Nimi|Merkkijono|Nimi
-Tiedot|Merkkijono|Lyhyt kuvaus, julkaisuvuosi jne.
+Name|Merkkijono|Nimi
+Info|Merkkijono|Lyhyt kuvaus, julkaisuvuosi jne.
 Taistelupeli, jota pelataan turnauksissa.
 
-####Tietokohde: Turnaustapahtuma
+####Tietokohde: Event
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Nimi|Merkkijono|Nimi
-Paikka|Merkkijono|Tapahtumapaikka
-Aloituspäivä|Date|Päivä jona turnaus alkaa
-Lopetuspäivä|Date|Päivä jona turnaus loppuu
+Name|Merkkijono|Nimi
+Location|Merkkijono|Tapahtumapaikka
+Start date|Date|Päivä jona turnaus alkaa
+End date|Date|Päivä jona turnaus loppuu
 Live|Boolean|Onko turnauksesta käynnissä stream
 Stream URLS|Array String|Streamien osoitteet
-Päivitysavain|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
+Update key|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
 Tapahtuma, jossa voidaan pelata turnauksia yhdestä tai useammasta pelistä.
 
-####Tietokohde: Turnaus
+####Tietokohde: Tournament
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Tulokset|String Array|Turnauksen loppusijoitukset
+Results|String Array|Turnauksen loppusijoitukset
 Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Turnauksen jälkeen tiedetään sen loppusijoitukset. Toimii myös liitostauluna.
 
-####Tietokohde: Ottelu
+####Tietokohde: Fight
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Nimi|Merkkijon|Ottelun nimi, esim. 'Grand Finals', 'Winners Finals' tai 'Top 32'
-Pelaaja1|Merkkijono|Ottelun osapuoli
-Pelaaja2|Merkkijono|Ottelun osapuoli
-Voittaja1|Boolean|Voittiko pelaaja 1
-Tulos|Merkkijono|Ottelun lopputulos, esim. 3-2
-Järjestys|Luku|Luku, joka kertoo missä järjestyksessä ottelut tulee näyttää (Finaalit viimeisenä, semifinaalit toiseksiviimeisenä, jne.)
+Name|Merkkijon|Ottelun nimi, esim. 'Grand Finals', 'Winners Finals' tai 'Top 32'
+Player1|Merkkijono|Ottelun osapuoli
+Player2|Merkkijono|Ottelun osapuoli
+Winner1|Boolean|Voittiko pelaaja 1
+Results|Merkkijono|Ottelun lopputulos, esim. 3-2
+Ordering|Luku|Luku, joka kertoo missä järjestyksessä ottelut tulee näyttää (Finaalit viimeisenä, semifinaalit toiseksiviimeisenä, jne.)
 Video URL|Merkkijono|Linkki videoon tai streamiin ottelusta.
+Timecode|Luku|Aika sekunneissa, jolloin videon tulee alkaa.
 Yksittäinen ottelu, joka on osa jotakin turnausta.
 
 ![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)

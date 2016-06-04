@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{event.name}}  <a href="{{base_path}}/events/{{event.id}}/edit"><button class="btn btn-default">Edit</button></a></h1>
 
-<section>
+<h1>{{event.name}}
+    <a href="{{base_path}}/events/{{event.id}}/edit">
+        <button class="btn btn-default">Edit</button>
+    </a>
+</h1>
+
+<section id="tournaments">
+    <ul style="list-style-type:none">
     {% for tournament in event.tournaments %}
-        <button id="{{tournament.game.id}}" onclick="show('{{tournament.game.id}}')" class="btn btn-default">{{tournament.game.name}}</button>
+        <a href="{{base_path}}/tournaments/{{tournament.id}}">
+            <li>{{tournament.game.name}}</li>
+        </a>
     {% endfor %}
-</section>
-    
-<section id="tournament">
-</section>
-<section id="matches">
+    </ul>
 </section>
     
 {% endblock %}

@@ -20,7 +20,7 @@ class Tournament extends BaseModel{
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         
-        Tournament::make($row);
+        return Tournament::make($row);
     }
     
     public static function event($event_id){

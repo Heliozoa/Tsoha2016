@@ -3,7 +3,7 @@ class Fight extends BaseModel{
     public $id, $tournament, $name, $player1, $player2, $ordering, $winner1, $video_url, $timecode, $results;
     
     public static function all(){
-        $query = DB::connection()->prepare('SELECT * FROM Fight');
+        $query = DB::connection()->prepare('SELECT * FROM Fight ORDER BY ordering');
         $query->execute();
         $rows = $query->fetchAll();
         
