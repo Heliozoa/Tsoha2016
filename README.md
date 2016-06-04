@@ -1,5 +1,7 @@
 # Tietokantasovelluksen esittelysivu
 
+##Mahdolliselle koodikatselmoijalle: ei haittaa, jos testaat asioiden poistoa, lisäämistä ja muokkausta siltä osin, kuin se sivustolla sattuu toimimaan
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/tournaments/)
