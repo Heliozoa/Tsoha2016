@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Games <a href="{{base_path}}/games/new"><button class="btn btn-default">New</button></a></h1>
+    <h1>
+        Games 
+        <a href="{{base_path}}/games/new">
+            <button class="btn btn-default">New</button>
+        </a>
+    </h1>
     
     <ul style="list-style-type:none">
         {% for game in games %}
-            <li><a href="{{base_path}}/games/{{game.id}}">{{game.name}}</a></li>
+            <a href="{{base_path}}/games/{{game.id}}">
+                <li>{{game.name}}</li>
+            </a>
         {% endfor %}
     </ul>
 {% endblock %}

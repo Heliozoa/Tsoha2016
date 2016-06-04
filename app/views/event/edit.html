@@ -1,21 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Editing {{event.name}} <button class="btn btn-danger">Delete</button></h1>
+
+<h1>Editing {{event.name}}
+    <form method="post" action="{{base_path}}/events/{{event.id}}/delete">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</h1>
+<a href="{{base_path}}/events/{{event.id}}/add">
+    <button class="btn btn-default">Add game</button>
+</a>
 
 <section>
-    <button class="btn btn-default">Add game</button>
     {% for tournament in event.tournaments %}
-        <h2>{{tournament.game.name}} <button class="btn btn-default">Add fight</button> <button class="btn btn-danger">Delete</button></h2>
+        <h2>{{tournament.game.name}}
+            <a href="{{base_path}}/tournaments/{{tournament.id}}/add">
+                <button class="btn btn-default">Add fight</button>
+            </a>
+            <form method="post" action="{{base_path}}/tournaments/{{tournament.id}}/delete">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </h2>
+        
         {% for fight in tournament.fights %}
-            <h3>{{fight.name}} <button class="btn btn-default">Edit</button> <button class="btn btn-danger">Delete</button></h3>
+            <h3>{{fight.name}}
+                <a href="{{base_path}}/fights/{{fight.id}}/edit" >
+                    <button class="btn btn-default">Edit</button>
+                </a>
+                <form method="post" action="{{base_path}}/fights/{{fight.id}}/delete">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </h3>
         {% endfor %}
     {% endfor %}
 </section>
-    
-<section id="tournament">
-</section>
-<section id="matches">
-</section>
-    
+
 {% endblock %}

@@ -1,14 +1,12 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    TopController::index();
   });
 
   $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+    TopController::sandbox();
   });
-  
-  
   
   $routes->get('/register', function() {
     TopController::register();
@@ -62,4 +60,12 @@
   
   $routes->get('/past_events', function() {
     EventController::past();
+  });
+  
+  $routes->get('/tournaments/:id', function($id){
+    TournamentController::show($id);
+  });
+  
+  $routes->get('/fights/:id', function($id){
+    FightController::show($id);
   });

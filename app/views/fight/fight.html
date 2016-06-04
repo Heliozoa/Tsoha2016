@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+<style>
+    body {background-color:#0d0d0d;}
+    a {color:BurlyWood;}
+    h5 {color:LightSlateGray;}
+</style>
+
+    <h5>
+        <a href="{{base_path}}/events/{{fight.tournament.event.id}}">{{fight.tournament.event.name}}</a>
+         - <a href="{{base_path}}/tournaments/{{fight.tournament.id}}">{{fight.tournament.game.name}}</a>
+         - {{fight.name}}
+    </h5>
+    
+    <section style="width:1280px;height:720px">
+        <iframe src="https://www.youtube.com/embed/{{fight.video_url}}?start={{fight.timecode}}&autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1" style="width:1280px;height:720px"></iframe>
+        
+        <section style="text-align:center">
+            <a style="float:left">&#8592;  Previous game</a>
+            {{fight.player1}} v {{fight.player2}}
+            <a style="float:right;color:gray">Next game  &#8594;</a>
+        </section>
+        
+    </section>
+    
+{% endblock %}
