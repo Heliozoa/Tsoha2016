@@ -13,6 +13,8 @@
         <a href="{{base_path}}/fights/{{fight.id}}">
             <li>{{fight.name}}</li>
         </a>
+    {% else %}
+        <li>No fights found</li>
     {% endfor %}
     </ul>
 </section>

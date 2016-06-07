@@ -40,17 +40,24 @@ class Game extends BaseModel {
         $query->execute(array('id' => $id));
     }
     
-    private static function makeAll($rows){
+    public static function validate($params){
+        $errors = array();
+        if(trim($params['name']) == ""){
+            $errors[] = "The name cannot be empty.";
+        }
+        return $errors;
+    }
+    
+    public static function makeAll($rows){
         $games = array();
         
         foreach($rows as $row){
             $games[] = Game::make($row);    
         }
-        
         return $games;
     }
     
-    private static function make($row){
+    public static function make($row){
         if($row){
             $game = new Game(array(
                 'id' => $row['id'],

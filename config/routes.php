@@ -50,12 +50,28 @@
     EventController::index();
   });
   
+  $routes->get('/events/new', function() {
+    EventController::newEvent();
+  });
+  
+  $routes->post('/events/new', function(){
+    EventController::add();
+  });
+  
   $routes->get('/events/:id', function($id) {
     EventController::show($id);
   });
   
   $routes->get('/events/:id/edit', function($id){
     EventController::edit($id);
+  });
+  
+  $routes->post('/events/:id/edit', function($id){
+    EventController::update($id);
+  });
+  
+  $routes->post('/events/:id/delete', function($id){
+    EventController::delete($id);
   });
   
   $routes->get('/past_events', function() {

@@ -23,8 +23,13 @@ class GameController extends BaseController{
     
     public static function add(){
         $params = $_POST;
-        $id = Game::add($params);
-        Redirect::to('/games/'.$id);
+        $errors = Game::validate($params);
+        if(count($errors) == 0){
+            $id = Game::add($params);
+            Redirect::to('/games/'.$id);
+        }else{
+            Redirect::to('/games/new', array('errors' => $errors, 'params' => $params));
+        }
     }
     
     public static function delete($id){
@@ -34,8 +39,12 @@ class GameController extends BaseController{
     
     public static function update($id){
         $params = $_POST;
-        $params['id'] = $id;
-        Game::update($params);
-        Redirect::to('/games/'.$params['id']);
+        $errors = Game::validate($params);
+        if(count($errors) == 0){
+            $params['id'] = $id;
+            Game::update($params);
+            Redirect::to('/games/'.$id);
+        }
+        Redirect::to('/games/'.$id.'/edit', array('errors' => $errors, 'params' => $params));
     }
 }

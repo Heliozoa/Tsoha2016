@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+    
+    {% if errors %}
+    <div class="alert alert-danger">
+        <ul style="list-style-type:none">
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
     <h1>
         {{game.name}}
         <a href="{{base_path}}/games/{{game.id}}/edit">

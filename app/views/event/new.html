@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    {% if errors %}
+    <div class="alert alert-danger">
+        <ul style="list-style-type:none">
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <h1>New event</h1>
+    
+<form method="post" action="{{base_path}}/events/new">
+    
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" value="{{params.name}}" class="form-control" type="text">
+        
+        <label>Location</label>
+        <input name="location" value="{{params.location}}" class="form-control" type="text">
+        
+        <label>Start date</label>
+        <input name="start_date" value="{{params.start_date}}" placeholder="YY/MM/DD" class="form-control" type="text">
+        
+        <label>End date</label>
+        <input name="end_date" value="{{params.end_date}}" placeholder="YY/MM/DD" class="form-control" type="text">
+        
+        <label>Live </label>
+        <input name="live" value="{{params.live}}" class="form-control" type="checkbox">
+        
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+{% endblock %}

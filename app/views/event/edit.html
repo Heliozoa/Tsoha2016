@@ -7,6 +7,21 @@
         <button type="submit" class="btn btn-danger">Delete</button>
     </form>
 </h1>
+    
+<form method="post" action="{{base_path}}/events/{{event.id}}/edit">
+    
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" value="{{event.name}}" class="form-control" type="text">
+        
+        <label>Location</label>
+        <input name="location" value="{{event.location}}" class="form-control" type="text">
+        <br>
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
 <a href="{{base_path}}/events/{{event.id}}/add">
     <button class="btn btn-default">Add game</button>
 </a>

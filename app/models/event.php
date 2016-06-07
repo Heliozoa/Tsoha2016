@@ -52,6 +52,54 @@ class Event extends BaseModel{
         $this->tournaments = Tournament::event($this->id);
     }
     
+    public static function add($params){
+        $query = DB::connection()->prepare('INSERT INTO Event (name, location, start_date, end_date, live, stream_urls, update_key) VALUES (:name, :location, :start_date, :end_date, :live, :stream_urls, :update_key) RETURNING id');
+        $query->execute($params);
+        $row = $query->fetch();
+        return $row['id'];
+    }
+    
+    public static function update($params){
+        $query = DB::connection()->prepare('UPDATE Event SET name = :name, location = :location WHERE id = :id');
+        $query->execute($params);
+    }
+    
+    public static function delete($id){
+        $query = DB::connection()->prepare('DELETE FROM Event WHERE id = :id');
+        $query->execute(array('id' => $id));
+    }
+    
+    public static function validate($params){
+        $errors = array();
+        
+        if(trim($params['name']) == ""){
+            $errors[] = "The name cannot be empty.";
+        }
+        
+        if(trim($params['location']) == ""){
+            $errors[] = "The location cannot be empty.";
+        }
+        
+        if(strtotime($params['start_date'] == false)){
+            $errors[] = "The start date is formatted incorrectly.";
+            $start_date = strtotime("00/01/01");
+        }else{
+            $start_date = strtotime($params['start_date']);
+        }
+        
+        if(strtotime($params['end_date'] == false)){
+            $errors[] = "The end date is formatted incorrectly.";
+            $end_date = strtotime("00/01/01");
+        }else{
+            $end_date = strtotime($params['end_date']);
+        }
+        
+        if($start_date > $end_date){
+            $errors[] = "The end date cannot be before the start date.";
+        }
+        
+        return $errors;
+    }
     
     private static function makeAll($rows){
         $events = array();
