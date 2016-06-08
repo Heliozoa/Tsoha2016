@@ -52,11 +52,11 @@ class Event extends BaseModel{
         $this->tournaments = Tournament::event($this->id);
     }
     
-    public static function add($params){
+    public function save(){
         $query = DB::connection()->prepare('INSERT INTO Event (name, location, start_date, end_date, live, stream_urls, update_key) VALUES (:name, :location, :start_date, :end_date, :live, :stream_urls, :update_key) RETURNING id');
-        $query->execute($params);
+        $query->execute($this->vars());
         $row = $query->fetch();
-        return $row['id'];
+        $this->id = $row['id'];
     }
     
     public static function update($params){
@@ -82,14 +82,14 @@ class Event extends BaseModel{
         
         if(strtotime($params['start_date'] == false)){
             $errors[] = "The start date is formatted incorrectly.";
-            $start_date = strtotime("00/01/01");
+            $start_date = strtotime("1980/01/01");
         }else{
             $start_date = strtotime($params['start_date']);
         }
         
         if(strtotime($params['end_date'] == false)){
             $errors[] = "The end date is formatted incorrectly.";
-            $end_date = strtotime("00/01/01");
+            $end_date = strtotime("2030/01/01");
         }else{
             $end_date = strtotime($params['end_date']);
         }
@@ -101,7 +101,7 @@ class Event extends BaseModel{
         return $errors;
     }
     
-    private static function makeAll($rows){
+    public static function makeAll($rows){
         $events = array();
         
         foreach($rows as $row){
@@ -111,18 +111,22 @@ class Event extends BaseModel{
         return $events;
     }
     
-    private static function make($row){
+    public static function make($row){
         if($row){
-            $event = new Event(array(
-                    'id' => $row['id'],
-                    'name' => $row['name'],
-                    'location' => $row['location'],
-                    'start_date' => $row['start_date'],
-                    'end_date' => $row['end_date'],
-                    'live' => $row['live'],
-                    'stream_urls' => $row['stream_urls'],
-                    'update_key' => $row['update_key']
-            ));
+            $params = array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'location' => $row['location'],
+                'start_date' => $row['start_date'],
+                'end_date' => $row['end_date'],
+                'live' => $row['live'],
+                'stream_urls' => $row['stream_urls'],
+                'update_key' => $row['update_key']
+                );
+            if(array_key_exists('id', $row)){
+                $params['id'] = $row['id'];
+            }
+            $event = new Event($params);
             
             return $event;
         }

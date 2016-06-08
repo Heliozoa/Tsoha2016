@@ -12,39 +12,41 @@ class GameController extends BaseController{
         View::make('game/game.html', array('game' => $game, 'events' => $events));
     }
     
+    public static function create(){
+        View::make('game/new.html');
+    }
+    
+    public static function store(){
+        $params = $_POST;
+        $game = Game::make($params);
+        $errors = $game->errors();
+        if(count($errors) == 0){
+            $game->save();
+            Redirect::to('/games/'.$game->id);
+        }else{
+            Redirect::to('/games/new', array('params' => $params, 'errors' => $errors));
+        }
+    }
+    
     public static function edit($id){
         $game = Game::find($id);
         View::make('game/edit.html', array('game' => $game));
     }
     
-    public static function newGame(){
-        View::make('game/new.html');
-    }
-    
-    public static function add(){
-        $params = $_POST;
-        $errors = Game::validate($params);
-        if(count($errors) == 0){
-            $id = Game::add($params);
-            Redirect::to('/games/'.$id);
-        }else{
-            Redirect::to('/games/new', array('errors' => $errors, 'params' => $params));
-        }
-    }
-    
-    public static function delete($id){
-        Game::delete($id);
-        Redirect::to('/games');
-    }
-    
     public static function update($id){
         $params = $_POST;
-        $errors = Game::validate($params);
+        $game = Game::make($params);
+        $errors = $game->errors();
         if(count($errors) == 0){
-            $params['id'] = $id;
-            Game::update($params);
+            $game->update($params);
             Redirect::to('/games/'.$id);
+        }else{
+            Redirect::to('/games/'.$id.'/edit', array('params' => $params, 'errors' => $errors));
         }
-        Redirect::to('/games/'.$id.'/edit', array('errors' => $errors, 'params' => $params));
+    }
+    
+    public static function destroy($id){
+        Game::destroy($id);
+        Redirect::to('/games');
     }
 }

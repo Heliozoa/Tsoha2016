@@ -22,11 +22,11 @@
   });
   
   $routes->get('/games/new', function() {
-    GameController::newGame();
+    GameController::create();
   });
   
   $routes->post('/games/new', function() {
-    GameController::add();
+    GameController::store();
   });
 
   $routes->get('/games/:id/edit', function($id){
@@ -38,7 +38,7 @@
   });
   
   $routes->post('/games/:id/delete', function($id) {
-    GameController::delete($id);
+    GameController::destroy($id);
   });
   
   $routes->get('/games/:id', function($id){
@@ -51,11 +51,11 @@
   });
   
   $routes->get('/events/new', function() {
-    EventController::newEvent();
+    EventController::create();
   });
   
   $routes->post('/events/new', function(){
-    EventController::add();
+    EventController::store();
   });
   
   $routes->get('/events/:id', function($id) {
@@ -78,9 +78,11 @@
     EventController::past();
   });
   
+  
   $routes->get('/tournaments/:id', function($id){
     TournamentController::show($id);
   });
+  
   
   $routes->get('/fights/:id', function($id){
     FightController::show($id);

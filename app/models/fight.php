@@ -26,7 +26,7 @@ class Fight extends BaseModel{
         return Fight::makeAll($rows);
     }
     
-    private static function makeAll($rows){
+    public static function makeAll($rows){
         $fights = array();
         foreach($rows as $row){
             $fights[] = Fight::make($row);
@@ -34,10 +34,9 @@ class Fight extends BaseModel{
         return $fights;
     }
     
-    private static function make($row){
+    public static function make($row){
         if($row){
-            $fight = new Fight(array(
-                'id' => $row['id'],
+            $params = array(
                 'tournament' => Tournament::find($row['tournament_id']),
                 'name' => $row['name'],
                 'player1' => $row['player1'],
@@ -47,7 +46,12 @@ class Fight extends BaseModel{
                 'video_url' => $row['video_url'],
                 'timecode' => $row['timecode'],
                 'results' => $row['results']
-            ));
+            );
+            if(array_key_exists('id', $row)){
+                $params['id'] = $row['id'];
+            }
+            $fight = new Fight($params);
+            
             return $fight;
         }
         return null;

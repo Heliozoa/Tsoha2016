@@ -21,9 +21,27 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $errors = array_merge($this->{$validator}());
       }
 
       return $errors;
+    }
+    
+    public static function array_from_row($row, $class){
+        $array = array();
+        foreach(get_class_vars($class) as $var => $null){
+            if(array_key_exists($var, $row)){
+                $array[$var] = $row[$var];
+            }
+        }
+        return $array;
+    }
+    
+    public function vars(){
+        $vars = get_object_vars($this);
+        unset($vars['id']);
+        unset($vars['validators']);
+        return $vars;
     }
 
   }

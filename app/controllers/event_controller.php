@@ -18,8 +18,26 @@ class EventController extends BaseController{
         View::make('event/event.html', array('event' => $event));
     }
     
-    public static function newEvent(){
+    public static function create(){
         View::make('event/new.html');
+    }
+    
+    public static function store(){
+        $params = $_POST;
+        
+        //temp
+        $params['update_key'] = "AAAA";
+        $params['stream_urls'] = "{}";
+        
+        if(!array_key_exists('live', $params)){
+            $params['live'] = "false";
+        }else{
+            $params['live'] = "true";
+        }
+        
+        $event = Event::make($params);
+        $event->save();
+        Redirect::to('/events/'.$event->id);
     }
     
     public static function add(){

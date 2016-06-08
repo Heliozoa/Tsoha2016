@@ -43,7 +43,7 @@ class Tournament extends BaseModel{
         $this->fights = Fight::tournament($this->id);
     }
     
-    private static function makeAll($rows){
+    public static function makeAll($rows){
         $tournament = array();
         
         foreach($rows as $row){
@@ -53,14 +53,17 @@ class Tournament extends BaseModel{
         return $tournament;
     }
     
-    private static function make($row){
+    public static function make($row){
         if($row){
-            $tournament = new Tournament(array(
-                'id' => $row['id'],
+            $params = array(
                 'event' => Event::find($row['event_id']),
                 'game' => Game::find($row['game_id']),
                 'results' => $row['results']
-            ));
+            );
+            if(array_key_exists('id', $row)){
+                $params['id'] = $row['id'];
+            }
+            $tournament = new Tournament($params);
             
             return $tournament;
         

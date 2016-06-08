@@ -5,6 +5,7 @@ class Game extends BaseModel {
     
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array('validate_name');
     }
     
     public static function all(){
@@ -23,30 +24,31 @@ class Game extends BaseModel {
         return Game::make($row);
     }
     
-    public static function add($params){
-        $query = DB::connection()->prepare('INSERT INTO Game (name, info) VALUES (:name, :info) RETURNING id');
-        $query->execute($params);
-        $row = $query->fetch();
-        return $row['id'];
-    }
-    
     public static function update($params){
         $query = DB::connection()->prepare('UPDATE Game SET name = :name, info = :info WHERE id = :id');
         $query->execute($params);
     }
     
-    public static function delete($id){
+    public static function destroy($id){
         $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
         $query->execute(array('id' => $id));
     }
     
-    public static function validate($params){
+    public function save(){
+        $query = DB::connection()->prepare('INSERT INTO Game (name, info) VALUES (:name, :info) RETURNING id');
+        $query->execute($this->vars());
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
+    public function validate_name(){
         $errors = array();
-        if(trim($params['name']) == ""){
+        if($this->name == ""){
             $errors[] = "The name cannot be empty.";
         }
         return $errors;
     }
+    
     
     public static function makeAll($rows){
         $games = array();
@@ -59,12 +61,8 @@ class Game extends BaseModel {
     
     public static function make($row){
         if($row){
-            $game = new Game(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'info' => $row['info']
-            ));
-            
+            $params = BaseModel::array_from_row($row, get_called_class());
+            $game = new Game($params);
             return $game;
         }
         
