@@ -1,10 +1,11 @@
 <?php
 
 class Tournament extends BaseModel{
-    public $id, $event, $game, $event_id, $game_id, $results, $fights;
+    public $id, $name, $event, $game, $event_id, $game_id, $results, $fights;
     
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array();
     }
     
     public static function all(){
@@ -49,6 +50,32 @@ class Tournament extends BaseModel{
     
     public function linkGame(){
         $this->game = Game::find($this->game_id);
+    }
+    
+    public function save(){
+        $query = DB::connection()->prepare('INSERT INTO Tournament (name, game_id, event_id) VALUES (:name, :game_id, :event_id) RETURNING id');
+        $query->execute($this->vars());
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
+    public function update($params){
+        $query = DB::connection()->prepare('UPDATE Tournament SET name = :name WHERE id = :id');
+        $query->execute($params);
+    }
+    
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM Tournament WHERE id = :id');
+        $query->execute(array('id' => $this->id));
+    }
+    
+    public function vars(){
+        $vars = parent::vars();
+        unset($vars['event']);
+        unset($vars['game']);
+        unset($vars['fights']);
+        unset($vars['results']);
+        return $vars;
     }
     
     public static function makeAll($rows){

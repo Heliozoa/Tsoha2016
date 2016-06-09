@@ -5,25 +5,23 @@
 <div style="float:left">
     <h1>Live Tournaments</h1>
     
-    <ul style="list-style-type:none">
+    <ul>
         {% for event in live %}
-        <a href="{{base_path}}/events/{{event.id}}">
+        <a href="{{event_path}}/{{event.id}}">
             <li>{{event.name}}</li>
         </a>
         {% endfor %}
     </ul>
 </div>
 
-<a href="{{base_path}}/events/new">
-    <button class="btn btn-default">New event</button>
-</a>
+{{btns.link("#{event_path}/new", "New event")}}
 
 <div style="float:right">
     <h1>Most Recent</h1>
     
-    <ul style="list-style-type:none">
+    <ul>
         {% for event in past %}
-        <a href="{{base_path}}/events/{{event.id}}">
+        <a href="{{event_path}}/{{event.id}}">
             <li>{{event.name}}</li>
         </a>
         {% endfor %}

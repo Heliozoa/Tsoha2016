@@ -2,11 +2,11 @@
 
 {% block content %}
     
-{{forms.errors(errors)}}
+{{msg.errors(errors)}}
     
 <h1>New event</h1>
     
-<form method="post" action="{{base_path}}/events/new">
+<form method="post" action="{{event_path}}/new">
     
     <div class="form-group">
         <label>Name</label>

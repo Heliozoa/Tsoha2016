@@ -9,7 +9,7 @@
 
 <h2>Fights</h2>
 <section id="fights">
-    <ul style="list-style-type:none">
+    <ul>
     {% for fight in tournament.fights %}
         <a href="{{base_path}}/fights/{{fight.id}}">
             <li>{{fight.name}}</li>

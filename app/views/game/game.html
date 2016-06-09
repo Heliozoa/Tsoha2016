@@ -2,23 +2,21 @@
 
 {% block content %}
     
-{{forms.errors(errors)}}
+{{msg.errors(errors)}}
     
     <h1>
         {{game.name}}
-        <a href="{{base_path}}/games/{{game.id}}/edit">
-            <button class="btn btn-default">Edit</button>
-        </a>
+        {{btns.link("#{game_path}/#{game.id}/edit", "Edit")}}
     </h1>
     <section>{{game.info}}</section>
     
     <h2>Tournaments</h2>
     
-    <ul style="list-style-type:none">
+    <ul>
         {% for event in events %}
-            <a href="{{base_path}}/events/{{event.id}}">
-                <li>{{event.name}}</li>
-            </a>
+        <li>
+            {{btns.link("#{event_path}/#{event.id}", "#{event.name}")}}
+        </li>
         {% else %}
             <li>No tournaments found</li>
         {% endfor %}

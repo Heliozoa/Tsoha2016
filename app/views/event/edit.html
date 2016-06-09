@@ -2,15 +2,13 @@
 
 {% block content %}
 
-{{forms.errors(errors)}}
+{{msg.errors(errors)}}
 
-<h1>Editing {{event.name}}
-    <form method="post" action="{{base_path}}/events/{{event.id}}/delete">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+<h1>Editing <a href="{{event_path}}/{{event.id}}">{{event.name}}</a>
+    {{forms.destroy_button("#{event_path}/#{event.id}/delete")}}
 </h1>
     
-<form method="post" action="{{base_path}}/events/{{event.id}}/edit">
+<form method="post" action="{{event_path}}/{{event.id}}/edit">
     
     <div class="form-group">
         <label>Name</label>
@@ -37,29 +35,20 @@
     </div>
 </form>
 
-<a href="{{base_path}}/events/{{event.id}}/add">
-    <button class="btn btn-default">Add game</button>
-</a>
+<br>
+{{btns.link("#{event_path}/#{event.id}/add", "Add tournament")}}
 
 <section>
     {% for tournament in event.tournaments %}
         <h2>{{tournament.game.name}}
-            <a href="{{base_path}}/tournaments/{{tournament.id}}/add">
-                <button class="btn btn-default">Add fight</button>
-            </a>
-            <form method="post" action="{{base_path}}/tournaments/{{tournament.id}}/delete">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            {{btns.link("#{tournament_path}/#{tournament.id}/add", "Add fight")}}
+            {{forms.destroy_button("#{tournament_path}/#{tournament.id}/delete")}}
         </h2>
         
         {% for fight in tournament.fights %}
             <h3>{{fight.name}}
-                <a href="{{base_path}}/fights/{{fight.id}}/edit" >
-                    <button class="btn btn-default">Edit</button>
-                </a>
-                <form method="post" action="{{base_path}}/fights/{{fight.id}}/delete">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                {{btns.link("#{fight_path}/#{fight_id}/edit", "Edit")}}
+                {{forms.destroy_button("#{fight_path}/#{fight.id}/delete")}}
             </h3>
         {% endfor %}
     {% endfor %}

@@ -62,6 +62,14 @@
     EventController::show($id);
   });
   
+  $routes->get('/events/:id/add', function($id) {
+    EventController::add($id);
+  });
+  
+  $routes->post('/events/:id/add', function($id) {
+    TournamentController::store($id);
+  });
+  
   $routes->get('/events/:id/edit', function($id){
     EventController::edit($id);
   });
@@ -71,7 +79,7 @@
   });
   
   $routes->post('/events/:id/delete', function($id){
-    EventController::delete($id);
+    EventController::destroy($id);
   });
   
   $routes->get('/past_events', function() {
@@ -81,6 +89,10 @@
   
   $routes->get('/tournaments/:id', function($id){
     TournamentController::show($id);
+  });
+  
+  $routes->post('/tournaments/:id/delete', function($id){
+    TournamentController::destroy($id);
   });
   
   

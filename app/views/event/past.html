@@ -8,9 +8,9 @@
 <br>
 <br>
 
-<ul style="list-style-type:none">
+<ul>
     {% for event in events %}
-    <a href="{{base_path}}/events/{{event.id}}">
+    <a href="{{event_path}}/{{event.id}}">
         <li>{{event.name}}</li>
     </a>
     {% endfor %}

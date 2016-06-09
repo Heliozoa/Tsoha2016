@@ -3,19 +3,21 @@
 {% block content %}
 
 <h1>{{event.name}}
-    <a href="{{base_path}}/events/{{event.id}}/edit">
-        <button class="btn btn-default">Edit</button>
-    </a>
+    {{btns.link("#{event_path}/#{event.id}/edit", "Edit")}}
 </h1>
 
 <h5>at {{event.location}} from {{event.start_date}} to {{event.end_date}}</h5>
 
 <section id="tournaments">
-    <ul style="list-style-type:none">
+    <ul>
     {% for tournament in event.tournaments %}
-        <a href="{{base_path}}/tournaments/{{tournament.id}}">
-            <li>{{tournament.game.name}}</li>
-        </a>
+        <li>
+            {% set name = "#{tournament.game.name}" %}
+            {% if tournament.name is not empty %}
+                {% set name = "{{name}} - {{tournament.name}}" %}
+            {% endif %}
+            {{btns.link("#{tournament_path}/#{tournament.id}", "#{name}", "primary")}}
+        </li>
     {% else %}
         <li>No tournaments found</li>
     {% endfor %}

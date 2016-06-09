@@ -65,9 +65,9 @@ class Event extends BaseModel{
         $query->execute($params);
     }
     
-    public function delete($id){
+    public function destroy(){
         $query = DB::connection()->prepare('DELETE FROM Event WHERE id = :id');
-        $query->execute(array('id' => $id));
+        $query->execute(array('id' => $this->id));
     }
     
     public function validate_name(){

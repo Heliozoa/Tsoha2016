@@ -48,7 +48,7 @@ class GameController extends BaseController{
     
     public static function destroy($id){
         $game = Game::make(array('id' => $id));
-        $game->destroy($id);
+        $game->destroy();
         Redirect::to('/games');
     }
 }

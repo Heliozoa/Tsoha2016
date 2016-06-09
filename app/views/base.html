@@ -2,6 +2,8 @@
 <html>
   <head>
     {% import "macros/forms.html" as forms %}
+    {% import "macros/buttons.html" as btns %}
+    {% import "macros/msg.html" as msg %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +20,9 @@
 
       <!-- Oma tyylitiedostomme -->
       <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
+      <style>
+        ul {list-style:none; padding:8px; line-height:3;}
+      </style>
     {% endblock %}
   </head>
 
@@ -40,8 +45,8 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{base_path}}/events">Events</a></li>
-            <li><a href="{{base_path}}/games">Games</a></li>
+            <li><a href="{{event_path}}">Events</a></li>
+            <li><a href="{{game_path}}">Games</a></li>
             <li><a href="{{base_path}}/register">Register</a></li>
             <li><a href="{{base_path}}/login">Log in</a></li>
           </ul>

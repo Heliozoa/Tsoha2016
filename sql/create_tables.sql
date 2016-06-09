@@ -20,6 +20,7 @@ CREATE TABLE Tournament(
     id SERIAL PRIMARY KEY,
     event_id    INTEGER REFERENCES Event(id),
     game_id     INTEGER REFERENCES Game(id),
+    name        varchar(20),
     results     varchar(20)[]
 );
 

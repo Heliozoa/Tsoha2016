@@ -2,17 +2,15 @@
 
 {% block content %}
     <h1>
-        Games 
-        <a href="{{base_path}}/games/new">
-            <button class="btn btn-default">New</button>
-        </a>
+        Games
+        {{btns.link("#{game_path}/new", "New")}}
     </h1>
     
-    <ul style="list-style-type:none">
+    <ul>
         {% for game in games %}
-            <a href="{{base_path}}/games/{{game.id}}">
-                <li>{{game.name}}</li>
-            </a>
+            <li>
+                {{btns.link("#{game_path}/#{game.id}", "#{game.name}", "primary")}}
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

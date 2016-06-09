@@ -1,0 +1,5 @@
+{% macro link(destination, text, class) %}
+<a href="{{destination}}" >
+    <button class="btn btn-{{class|default('default')}}">{{text}}</button>
+</a>
+{% endmacro %}

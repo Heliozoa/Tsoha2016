@@ -2,11 +2,11 @@
 
 {% block content %}
     
-{{forms.errors(errors)}}
+{{msg.errors(errors)}}
 
-<h1>Editing: {{game.name}}</h1>
+<h1>Editing: <a href="{{game_path}}/{{game.id}}">{{game.name}}</a></h1>
     
-<form method="post" action="{{base_path}}/games/{{game.id}}/edit">
+<form method="post" action="{{game_path}}/{{game.id}}/edit">
     
     <div class="form-group">
         <label>Name</label>
@@ -20,5 +20,5 @@
     </div>
 </form>
 
-{{forms.destroy_button("#{base_path}/games/#{game.id}/delete")}}
+{{forms.destroy_button("#{game_path}/#{game.id}/delete")}}
 {% endblock %}

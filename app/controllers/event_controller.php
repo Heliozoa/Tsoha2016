@@ -21,6 +21,12 @@ class EventController extends BaseController{
         View::make('event/event.html', array('event' => $event));
     }
     
+    public static function add($id){
+        $event = Event::find($id);
+        $games = Game::all();
+        View::make('event/add.html', array('event' => $event, 'games' => $games));
+    }
+    
     public static function create(){
         View::make('event/new.html');
     }
@@ -77,8 +83,9 @@ class EventController extends BaseController{
         }
     }
     
-    public static function delete($id){
-        Event::delete($id);
+    public static function destroy($id){
+        $event = Event::make(array('id' => $id));
+        $event->destroy();
         Redirect::to('/events');
     }
 }
