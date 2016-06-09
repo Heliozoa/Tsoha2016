@@ -16,6 +16,8 @@
         <a href="{{base_path}}/tournaments/{{tournament.id}}">
             <li>{{tournament.game.name}}</li>
         </a>
+    {% else %}
+        <li>No tournaments found</li>
     {% endfor %}
     </ul>
 </section>

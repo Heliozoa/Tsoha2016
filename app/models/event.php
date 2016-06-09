@@ -5,6 +5,7 @@ class Event extends BaseModel{
     
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_location', 'validate_start_date', 'validate_end_date', 'validate_date_order');
     }
     
     public static function all(){
@@ -48,7 +49,7 @@ class Event extends BaseModel{
         return Event::makeAll($rows);
     }
     
-    public function getTournaments(){
+    public function linkTournaments(){
         $this->tournaments = Tournament::event($this->id);
     }
     
@@ -59,46 +60,76 @@ class Event extends BaseModel{
         $this->id = $row['id'];
     }
     
-    public static function update($params){
-        $query = DB::connection()->prepare('UPDATE Event SET name = :name, location = :location WHERE id = :id');
+    public function update($params){
+        $query = DB::connection()->prepare('UPDATE Event SET name = :name, location = :location, start_date = :start_date, end_date = :end_date, live = :live WHERE id = :id');
         $query->execute($params);
     }
     
-    public static function delete($id){
+    public function delete($id){
         $query = DB::connection()->prepare('DELETE FROM Event WHERE id = :id');
         $query->execute(array('id' => $id));
     }
     
-    public static function validate($params){
+    public function validate_name(){
         $errors = array();
         
-        if(trim($params['name']) == ""){
+        if($this->name == ""){
             $errors[] = "The name cannot be empty.";
         }
         
-        if(trim($params['location']) == ""){
+        return $errors;
+    }
+    
+    public function validate_location(){
+        $errors = array();
+        
+        if($this->location == ""){
             $errors[] = "The location cannot be empty.";
         }
         
-        if(strtotime($params['start_date'] == false)){
+        return $errors;
+    }
+    
+    public function validate_start_date(){
+        $errors = array();
+        
+        if(strtotime($this->start_date) == false){
             $errors[] = "The start date is formatted incorrectly.";
-            $start_date = strtotime("1980/01/01");
+            $this->start_date = "1980-01-01";
         }else{
-            $start_date = strtotime($params['start_date']);
+            $this->start_date = date("Y-m-d", strtotime($this->start_date));
         }
         
-        if(strtotime($params['end_date'] == false)){
+        return $errors;
+    }
+    
+    public function validate_end_date(){
+        $errors = array();
+        
+        if(strtotime($this->end_date) == false){
             $errors[] = "The end date is formatted incorrectly.";
-            $end_date = strtotime("2030/01/01");
+            $this->end_date = "2030-01-01";
         }else{
-            $end_date = strtotime($params['end_date']);
+            $this->end_date = date("Y-m-d", strtotime($this->end_date));
         }
         
-        if($start_date > $end_date){
+        return $errors;
+    }
+    
+    public function validate_date_order(){
+        $errors = array();
+        
+        if(strtotime($this->start_date) > strtotime($this->end_date)){
             $errors[] = "The end date cannot be before the start date.";
         }
         
         return $errors;
+    }
+    
+    public function vars(){
+        $vars = parent::vars();
+        unset($vars['tournaments']);
+        return $vars;
     }
     
     public static function makeAll($rows){
@@ -113,21 +144,8 @@ class Event extends BaseModel{
     
     public static function make($row){
         if($row){
-            $params = array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'location' => $row['location'],
-                'start_date' => $row['start_date'],
-                'end_date' => $row['end_date'],
-                'live' => $row['live'],
-                'stream_urls' => $row['stream_urls'],
-                'update_key' => $row['update_key']
-                );
-            if(array_key_exists('id', $row)){
-                $params['id'] = $row['id'];
-            }
+            $params = BaseModel::array_from_row($row, get_called_class());
             $event = new Event($params);
-            
             return $event;
         }
         

@@ -1,7 +1,7 @@
 <?php
 
 class Tournament extends BaseModel{
-    public $id, $event, $game, $results, $fights;
+    public $id, $event, $game, $event_id, $game_id, $results, $fights;
     
     public function __construct($attributes){
         parent::__construct($attributes);
@@ -39,8 +39,16 @@ class Tournament extends BaseModel{
         return Tournament::makeAll($rows);
     }
     
-    public function getFights(){
+    public function linkFights(){
         $this->fights = Fight::tournament($this->id);
+    }
+    
+    public function linkEvent(){
+        $this->event = Event::find($this->event_id);
+    }
+    
+    public function linkGame(){
+        $this->game = Game::find($this->game_id);
     }
     
     public static function makeAll($rows){
@@ -55,18 +63,9 @@ class Tournament extends BaseModel{
     
     public static function make($row){
         if($row){
-            $params = array(
-                'event' => Event::find($row['event_id']),
-                'game' => Game::find($row['game_id']),
-                'results' => $row['results']
-            );
-            if(array_key_exists('id', $row)){
-                $params['id'] = $row['id'];
-            }
+            $params = BaseModel::array_from_row($row, get_called_class());
             $tournament = new Tournament($params);
-            
             return $tournament;
-        
         }
         
         return null;

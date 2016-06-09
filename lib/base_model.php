@@ -21,12 +21,13 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
-        $errors = array_merge($this->{$validator}());
+        $errors = array_merge($errors, $this->{$validator}());
       }
 
       return $errors;
     }
     
+    //luo taulukon tietokannan rivin tai muun listan pohjalta. $class on luokan nimi ja taulukkoon otetaan mukaan vain ne attribuutit, joille löytyy vastine $class-luokan määrittelystä.
     public static function array_from_row($row, $class){
         $array = array();
         foreach(get_class_vars($class) as $var => $null){
@@ -37,6 +38,7 @@
         return $array;
     }
     
+    //palauttaa olion muuttujat ilman id ja validators kenttiä
     public function vars(){
         $vars = get_object_vars($this);
         unset($vars['id']);

@@ -2,17 +2,9 @@
 
 {% block content %}
     
-    {% if errors %}
-    <div class="alert alert-danger">
-        <ul style="list-style-type:none">
-            {% for error in errors %}
-            <li>{{error}}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    
-    <h1>Editing: {{game.name}}</h1>
+{{forms.errors(errors)}}
+
+<h1>Editing: {{game.name}}</h1>
     
 <form method="post" action="{{base_path}}/games/{{game.id}}/edit">
     
@@ -28,7 +20,5 @@
     </div>
 </form>
 
-<form method="post" action="{{base_path}}/games/{{game.id}}/delete">
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+{{forms.destroy_button("#{base_path}/games/#{game.id}/delete")}}
 {% endblock %}

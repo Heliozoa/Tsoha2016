@@ -35,6 +35,7 @@ class GameController extends BaseController{
     
     public static function update($id){
         $params = $_POST;
+        $params['id'] = $id;
         $game = Game::make($params);
         $errors = $game->errors();
         if(count($errors) == 0){
@@ -46,7 +47,8 @@ class GameController extends BaseController{
     }
     
     public static function destroy($id){
-        Game::destroy($id);
+        $game = Game::make(array('id' => $id));
+        $game->destroy($id);
         Redirect::to('/games');
     }
 }

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{{forms.errors(errors)}}
+
 <h1>Editing {{event.name}}
     <form method="post" action="{{base_path}}/events/{{event.id}}/delete">
         <button type="submit" class="btn btn-danger">Delete</button>
@@ -16,7 +18,20 @@
         
         <label>Location</label>
         <input name="location" value="{{event.location}}" class="form-control" type="text" autocomplete="off">
-        <br>
+        
+        <label>Start date</label>
+        <input name="start_date" value="{{event.start_date}}" placeholder="YYYY-MM-DD" class="form-control" type="text" autocomplete="off">
+        
+        <label>End date</label>
+        <input name="end_date" value="{{event.end_date}}" placeholder="YYYY-MM-DD" class="form-control" type="text" autocomplete="off">
+        
+        {% if event.live %}
+        <label>Live </label>
+        <input name="live" class="form-control" type="checkbox" checked>
+        {% else %}
+        <label>Live </label>
+        <input name="live" class="form-control" type="checkbox">
+        {% endif %}
         
         <button type="submit" class="btn btn-primary">Save</button>
     </div>

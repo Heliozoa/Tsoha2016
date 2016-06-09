@@ -2,17 +2,9 @@
 
 {% block content %}
     
-    {% if errors %}
-    <div class="alert alert-danger">
-        <ul style="list-style-type:none">
-            {% for error in errors %}
-            <li>{{error}}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+{{forms.errors(errors)}}
     
-    <h1>New event</h1>
+<h1>New event</h1>
     
 <form method="post" action="{{base_path}}/events/new">
     
@@ -24,10 +16,10 @@
         <input name="location" value="{{params.location}}" class="form-control" type="text" autocomplete="off">
         
         <label>Start date</label>
-        <input name="start_date" value="{{params.start_date}}" placeholder="YY/MM/DD" class="form-control" type="text" autocomplete="off">
+        <input name="start_date" value="{{params.start_date}}" placeholder="YYYY-MM-DD" class="form-control" type="text" autocomplete="off">
         
         <label>End date</label>
-        <input name="end_date" value="{{params.end_date}}" placeholder="YY/MM/DD" class="form-control" type="text" autocomplete="off">
+        <input name="end_date" value="{{params.end_date}}" placeholder="YYYY-MM-DD" class="form-control" type="text" autocomplete="off">
         
         <label>Live </label>
         <input name="live" value="{{params.live}}" class="form-control" type="checkbox">

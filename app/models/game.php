@@ -24,12 +24,12 @@ class Game extends BaseModel {
         return Game::make($row);
     }
     
-    public static function update($params){
+    public function update($params){
         $query = DB::connection()->prepare('UPDATE Game SET name = :name, info = :info WHERE id = :id');
         $query->execute($params);
     }
     
-    public static function destroy($id){
+    public function destroy($id){
         $query = DB::connection()->prepare('DELETE FROM Game WHERE id = :id');
         $query->execute(array('id' => $id));
     }

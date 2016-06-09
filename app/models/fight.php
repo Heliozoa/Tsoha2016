@@ -1,6 +1,6 @@
 <?php
 class Fight extends BaseModel{
-    public $id, $tournament, $name, $player1, $player2, $ordering, $winner1, $video_url, $timecode, $results;
+    public $id, $tournament, $tournament_id, $name, $player1, $player2, $ordering, $winner1, $video_url, $timecode, $results;
     
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Fight ORDER BY ordering');
@@ -26,6 +26,10 @@ class Fight extends BaseModel{
         return Fight::makeAll($rows);
     }
     
+    public function linkTournament(){
+        $this->tournament = Tournament::find($this->tournament_id);
+    }
+    
     public static function makeAll($rows){
         $fights = array();
         foreach($rows as $row){
@@ -34,26 +38,15 @@ class Fight extends BaseModel{
         return $fights;
     }
     
+    
+    
     public static function make($row){
         if($row){
-            $params = array(
-                'tournament' => Tournament::find($row['tournament_id']),
-                'name' => $row['name'],
-                'player1' => $row['player1'],
-                'player2' => $row['player2'],
-                'ordering' => $row['ordering'],
-                'winner1' => $row['winner1'],
-                'video_url' => $row['video_url'],
-                'timecode' => $row['timecode'],
-                'results' => $row['results']
-            );
-            if(array_key_exists('id', $row)){
-                $params['id'] = $row['id'];
-            }
+            $params = BaseModel::array_from_row($row, get_called_class());
             $fight = new Fight($params);
-            
             return $fight;
         }
+        
         return null;
     }
 }
