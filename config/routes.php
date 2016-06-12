@@ -98,6 +98,14 @@
     TournamentController::show($id);
   });
   
+  $routes->get('/events/:event_id/tournaments/:id/add', function($event_id, $id){
+    TournamentController::add($id);
+  });
+  
+  $routes->get('/events/:event_id/tournaments/:id/edit', function($event_id, $id){
+    TournamentController::edit($id);
+  });
+  
   $routes->post('/events/:event_id/tournaments/:id/delete', function($event_id, $id){
     TournamentController::destroy($event_id, $id);
   });
@@ -105,4 +113,12 @@
   
   $routes->get('/events/:event_id/tournaments/:tournament_id/fights/:id', function($event_id, $tournament_id, $id){
     FightController::show($id);
+  });
+  
+  $routes->get('/events/:event_id/tournaments/:tournament_id/fights/:id/edit', function($event_id, $tournament_id, $id){
+    FightController::edit($id);
+  });
+  
+  $routes->post('/events/:event_id/tournaments/:tournament_id/fights/:id/delete', function($event_id, $tournament_id, $id){
+    FightController::delete($id);
   });

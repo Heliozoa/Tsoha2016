@@ -27,7 +27,9 @@ class Fight extends BaseModel{
     }
     
     public function linkTournament(){
-        $this->tournament = Tournament::find($this->tournament_id);
+        if($this->tournament == null){
+            $this->tournament = Tournament::find($this->tournament_id);
+        }
     }
     
     public static function makeAll($rows){

@@ -8,6 +8,16 @@ Turnauksen luoja saa avaimen, jota käyttämällä myös muut järjestäjät voi
 En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md. **Fokus siirtyi viikolla 2 enemmän turnausten katsomiseen jälkeenpäin videoiden avulla.**
 
 
+##Käynnistys- / käyttöohje
+Työ löytyy osoitteesta ![madamada.users.cs.helsinki.fi/tournaments/](http://madamada.users.cs.helsinki.fi/tournaments/)
+
+####Käyttäjät:
+Tyyppi|Käyttäjänimmi|Salasana
+----|----|----
+Admin|super|super
+Tavallinen käyttäjä|basic|basic
+    
+    
 ##Käyttäjäryhmät
 ####Kirjautumaton
 Käyttäjä, joka ei ole kirjautunut järjestelmään.
@@ -20,6 +30,7 @@ Sivuston omistaja. Ylläpitäjä on myös kirjautunut.
 
 ####Turnauksen järjestäjä
 Käyttäjä, jolla on turnauksen päivitysavain. Voi olla Kirjautumaton tai Kirjautunut.
+
 
 ##Käyttötapaukset
 

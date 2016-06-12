@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<h1>Editing <a href="{{ paths.event(_context) }}">{{event.name}}</a>
+<h1>Editing
+    <a href="{{ paths.event(_context) }}">{{event.name}}</a>
     {{ forms.destroy_button("#{ paths.event(_context, 'delete') }") }}
 </h1>
     
@@ -38,17 +39,10 @@
 
 <section>
     {% for tournament in event.tournaments %}
-        <h2>{{ tournament.game.name }}
-            {{ btns.link("#{ paths.tournament(_context, 'add') }", "Add fight") }}
+        <h2>
+            <a href="{{ paths.tournament(_context) }}">{{ tournament.game.name }}</a>
             {{ forms.destroy_button("#{ paths.tournament(_context, 'delete') }") }}
         </h2>
-        
-        {% for fight in tournament.fights %}
-            <h3>{{ fight.name }}
-                {{ btns.link("#{ paths.fight(_context, 'edit') }", "Edit") }}
-                {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }", "Delete") }}
-            </h3>
-        {% endfor %}
     {% endfor %}
 </section>
 

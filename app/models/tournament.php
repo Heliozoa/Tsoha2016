@@ -8,6 +8,16 @@ class Tournament extends BaseModel{
         $this->validators = array();
     }
     
+    //voisi korvata helpommalla, jos selviää miten event/add.htmlän <option value="{{game.id}}">{{game.name}}</option> saisi palauttamaan myös game.namen konstruktorille.
+    public function setName(){
+        $this->linkGame();
+        if($this->name == ""){
+            $this->name = $this->game->name;
+        } else {
+            $this->name = $this->name." ".$this->game->name;
+        }
+    }
+    
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Tournament');
         $query->execute();
@@ -41,15 +51,21 @@ class Tournament extends BaseModel{
     }
     
     public function linkFights(){
-        $this->fights = Fight::tournament($this->id);
+        if($this->fights == null){
+            $this->fights = Fight::tournament($this->id);
+        }
     }
     
     public function linkEvent(){
-        $this->event = Event::find($this->event_id);
+        if($this->event == null){
+            $this->event = Event::find($this->event_id);
+        }
     }
     
     public function linkGame(){
-        $this->game = Game::find($this->game_id);
+        if($this->game == null){
+            $this->game = Game::find($this->game_id);
+        }
     }
     
     public function save(){

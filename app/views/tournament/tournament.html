@@ -3,8 +3,9 @@
 {% block content %}
 
 <h1>
-    <a href="{{ paths.tournament(_context) }}">{{ tournament.event.name }}</a>
-    - {{ tournament.game.name }}
+    <a href="{{ paths.event(_context) }}">{{ tournament.event.name }}</a>
+    - {{ tournament.name }}
+    {{ btns.link("#{ paths.tournament(_context, 'edit') }", "Edit") }}
 </h1>
 
 <h2>Fights</h2>

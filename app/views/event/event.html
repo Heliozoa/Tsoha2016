@@ -12,12 +12,7 @@
     <ul>
     {% for tournament in event.tournaments %}
         <li>
-            {% if tournament.name is not empty %}
-                {% set name = "#{tournament.game.name} - #{tournament.name}" %}
-            {% else %}
-                {% set name = "#{tournament.game.name}" %}
-            {% endif %}
-            {{ btns.link("#{ paths.tournament(_context) }", "#{name}") }}
+            {{ btns.link("#{ paths.tournament(_context) }", "#{tournament.name}") }}
         </li>
     {% else %}
         <li>No tournaments found</li>

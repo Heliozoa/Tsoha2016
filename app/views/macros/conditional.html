@@ -1,0 +1,5 @@
+{% macro notEmpty(param, pre, post) %}
+    {% if param is not empty %}
+    {{pre|default("")}}{{param}}{{post|default("")}}
+    {% endif %}
+{% endmacro %}

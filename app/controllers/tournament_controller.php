@@ -6,7 +6,8 @@ class TournamentController extends BaseController{
         $tournament->linkEvent();
         $tournament->linkGame();
         $tournament->linkFights();
-        View::make('tournament/tournament.html', array('tournament' => $tournament, 'event' => $tournament->event));
+        $tournament->setName();
+        View::make('tournament/tournament.html', array('tournament' => $tournament, 'event' => $tournament->event, 'game' => $tournament->game));
     }
     
     public static function store($event_id){
@@ -20,6 +21,15 @@ class TournamentController extends BaseController{
         }else{
             Redirect::to('/events/'.$event_id.'/add', array('params' => $params, 'errors' => $errors));
         }
+    }
+    
+    public static function edit($id){
+        $tournament = Tournament::find($id);
+        $tournament->linkGame();
+        $tournament->linkEvent();
+        $tournament->linkFights();
+        $tournament->setName();
+        View::make('tournament/edit.html', array('tournament' => $tournament, 'event' => $tournament->event));
     }
     
     public static function destroy($event_id, $id){

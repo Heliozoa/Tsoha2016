@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Editing
+    <a href="{{ paths.event(_context) }}">{{event.name}}</a>
+    - <a href="{{ paths.tournament(_context) }}">{{tournament.name}}</a>
+    {{ forms.destroy_button("#{ paths.tournament(_context, 'delete') }") }}
+</h1>
+{{ btns.link("#{ paths.tournament(_context, 'add') }", "Add fight") }}
+
+{% for fight in tournament.fights %}
+<h3>{{ fight.name }}
+    {{ btns.link("#{ paths.fight(_context, 'edit') }", "Edit") }}
+    {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }", "Delete") }}
+</h3>
+{% endfor %}
+    
+{% endblock %}

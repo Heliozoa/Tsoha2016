@@ -4,6 +4,7 @@ class User extends BaseModel {
     public $id, $username, $password, $super;
     
     public function __construct($attributes){
+        //ei toimi test_datan kanssa
         //$attributes['password'] = crypt($password);
         parent::__construct($attributes);
         $this->validators = array();

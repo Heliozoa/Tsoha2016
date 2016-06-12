@@ -8,4 +8,12 @@ class FightController extends BaseController{
         $fight->tournament->linkGame();
         View::make('fight/fight.html', array('fight' => $fight, 'tournament' => $fight->tournament, 'event' => $fight->tournament->event));
     }
+    
+    public static function edit($id){
+        
+    }
+    
+    public static function delete($id){
+        
+    }
 }
