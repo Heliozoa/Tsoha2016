@@ -75,6 +75,8 @@ class Event extends BaseModel{
         
         if($this->name == ""){
             $errors[] = "The name cannot be empty.";
+        } else if(strlen($this->name) > 40){
+            $errors[] = "The name cannot be longer than 40 characters.";
         }
         
         return $errors;
@@ -85,6 +87,8 @@ class Event extends BaseModel{
         
         if($this->location == ""){
             $errors[] = "The location cannot be empty.";
+        } else if(strlen($this->location) > 40){
+            $errors[] = "The location cannot be longer than 40 characters.";
         }
         
         return $errors;

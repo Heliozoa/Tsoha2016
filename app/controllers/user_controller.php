@@ -10,6 +10,11 @@ class UserController extends BaseController {
         View::make('auth/login.html');
     }
     
+    public static function logout(){
+            $_SESSION['user'] = null;
+            Redirect::to('/', array('message' => 'Logged out'));
+    }
+    
     public static function handle_login(){
         $params = $_POST;
         

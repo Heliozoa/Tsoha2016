@@ -5,7 +5,7 @@ class Tournament extends BaseModel{
     
     public function __construct($attributes){
         parent::__construct($attributes);
-        $this->validators = array();
+        $this->validators = array('validate_name');
     }
     
     //voisi korvata helpommalla, jos selviää miten event/add.htmlän <option value="{{game.id}}">{{game.name}}</option> saisi palauttamaan myös game.namen konstruktorille.
@@ -66,6 +66,16 @@ class Tournament extends BaseModel{
         if($this->game == null){
             $this->game = Game::find($this->game_id);
         }
+    }
+    
+    public function validate_name(){
+        $errors = array();
+        if($this->name == ""){
+            $errors[] = "The name cannot be empty.";
+        } else if(strlen($this->name) > 20){
+            $errors[] = "The name cannot be longer than 20 characters.";
+        }
+        return $errors;
     }
     
     public function save(){

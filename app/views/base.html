@@ -49,8 +49,13 @@
             <!-- Navigaation linkit -->
             <li><a href="{{base_path}}/events">Events</a></li>
             <li><a href="{{base_path}}/games">Games</a></li>
-            <li><a href="{{base_path}}/register">Register</a></li>
-            <li><a href="{{base_path}}/login">Log in</a></li>
+            {% if user_logged_in is not null %}
+              <li><a href="{{base_path}}/logout">Log out</a></li>
+              <li>Logged in as [{{user_logged_in.username}}]</li>
+            {% else %}
+              <li><a href="{{base_path}}/register">Register</a></li>
+              <li><a href="{{base_path}}/login">Log in</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

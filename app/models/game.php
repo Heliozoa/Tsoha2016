@@ -45,6 +45,8 @@ class Game extends BaseModel {
         $errors = array();
         if($this->name == ""){
             $errors[] = "The name cannot be empty.";
+        } else if(strlen($this->name) > 40){
+            $errors[] = "The name cannot be longer than 40 characters.";
         }
         return $errors;
     }

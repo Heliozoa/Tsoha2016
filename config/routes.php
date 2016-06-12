@@ -20,6 +20,10 @@
     UserController::login();
   });
   
+  $routes->get('/logout', function() {
+    UserController::logout();
+  });
+  
   $routes->post('/login', function() {
     UserController::handle_login();
   });
