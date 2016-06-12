@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
-{{msg.errors(errors)}}
 
-<h1>Editing: <a href="{{game_path}}/{{game.id}}">{{game.name}}</a></h1>
+<h1>Editing: <a href="{{ paths.game(_context) }}">{{ game.name }}</a></h1>
     
-<form method="post" action="{{game_path}}/{{game.id}}/edit">
+<form method="post" action="{{ paths.game(_context, 'edit') }}">
     
     <div class="form-group">
         <label>Name</label>
@@ -17,8 +15,10 @@
         <br>
         
         <button type="submit" class="btn btn-primary">Save</button>
+        <br>
+        <br>
+        {{ forms.destroy_button("#{ paths.game(_context, 'delete') }") }}
     </div>
 </form>
 
-{{forms.destroy_button("#{game_path}/#{game.id}/delete")}}
 {% endblock %}

@@ -20,12 +20,4 @@ class TopController extends BaseController{
 	  Kint::dump($ekatap);
 	  Kint::dump($eventt);
     }
-    
-    public static function register(){
-       View::make('auth/register.html'); 
-    }
-    
-    public static function login(){
-        View::make('auth/login.html');
-    }
 }

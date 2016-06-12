@@ -48,7 +48,7 @@ class EventController extends BaseController{
         $errors = $event->errors();
         if(count($errors) == 0){
             $event->save();
-            Redirect::to('/events/'.$event->id);
+            Redirect::to('/events/'.$event->id, array('message' => "Tournament added"));
         }else{
             Redirect::to('/events/new', array('params' => $params, 'errors' => $errors));
         }
@@ -77,7 +77,7 @@ class EventController extends BaseController{
         $errors = $event->errors();
         if(count($errors) == 0){
             $event->update($params);
-            Redirect::to('/events/'.$id);
+            Redirect::to('/events/'.$id, array('message' => "Event updated"));
         } else {
             Redirect::to('/events/'.$id.'/edit', array('errors' => $errors, 'params' => $params));
         }
@@ -86,6 +86,6 @@ class EventController extends BaseController{
     public static function destroy($id){
         $event = Event::make(array('id' => $id));
         $event->destroy();
-        Redirect::to('/events');
+        Redirect::to('/events', array('message' => "Event deleted"));
     }
 }

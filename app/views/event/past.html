@@ -10,7 +10,7 @@
 
 <ul>
     {% for event in events %}
-    <a href="{{event_path}}/{{event.id}}">
+    <a href="{{ paths.event(_context) }}">
         <li>{{event.name}}</li>
     </a>
     {% endfor %}

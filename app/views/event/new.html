@@ -2,11 +2,9 @@
 
 {% block content %}
     
-{{msg.errors(errors)}}
-    
 <h1>New event</h1>
     
-<form method="post" action="{{event_path}}/new">
+<form method="post" action="{{ paths.event(_context, 'new') }}">
     
     <div class="form-group">
         <label>Name</label>

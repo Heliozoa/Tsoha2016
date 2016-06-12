@@ -9,13 +9,13 @@
 </style>
 
     <h5>
-        <a href="{{event_path}}/{{fight.tournament.event.id}}">{{fight.tournament.event.name}}</a>
-         - <a href="{{tournament_path}}/{{fight.tournament.id}}">{{fight.tournament.game.name}}</a>
-         - {{fight.name}}
+        <a href="{{ paths.event(_context) }}">{{fight.tournament.event.name}}</a>
+         - <a href="{{ paths.tournament(_context) }}">{{ fight.tournament.game.name }}</a>
+         - {{ fight.name }}
     </h5>
     
     <section style="width:1280px;height:720px">
-        <iframe src="https://www.youtube.com/embed/{{fight.video_url}}?start={{fight.timecode}}&autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1" style="width:1280px;height:720px"></iframe>
+        <iframe src="https://www.youtube.com/embed/{{ fight.video_url }}?start={{ fight.timecode }}&autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1" style="width:1280px;height:720px"></iframe>
         
         <section style="text-align:center">
             <a style="float:left">&#8592;  Previous game</a>

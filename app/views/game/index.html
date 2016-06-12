@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <h1>
         Games
-        {{btns.link("#{game_path}/new", "New")}}
+            {{ btns.link("#{ paths.game(_context, "new") }", "New") }}
     </h1>
     
     <ul>
         {% for game in games %}
             <li>
-                {{btns.link("#{game_path}/#{game.id}", "#{game.name}", "primary")}}
+                {{ btns.link("#{ paths.game(_context) }", "#{game.name}") }}
             </li>
         {% endfor %}
     </ul>

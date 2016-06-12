@@ -4,6 +4,7 @@
     {% import "macros/forms.html" as forms %}
     {% import "macros/buttons.html" as btns %}
     {% import "macros/msg.html" as msg %}
+    {% import "macros/paths.html" as paths %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,10 +17,10 @@
 
     {% block head %}
       <!-- Bootstrap (tyylitiedosto) -->
-      <link href="{{base_path}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="{{ base_path }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
       <!-- Oma tyylitiedostomme -->
-      <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
+      <link href="{{ base_path }}/assets/css/site.css" rel="stylesheet">
       <style>
         ul {list-style:none; padding:8px; line-height:3;}
       </style>
@@ -39,14 +40,14 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
-          <a class="navbar-brand" href="{{base_path}}">Fighting Game Tournaments</a>
+          <a class="navbar-brand" href="{{ base_path }}">Fighting Game Tournaments</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{event_path}}">Events</a></li>
-            <li><a href="{{game_path}}">Games</a></li>
+            <li><a href="{{base_path}}/events">Events</a></li>
+            <li><a href="{{base_path}}/games">Games</a></li>
             <li><a href="{{base_path}}/register">Register</a></li>
             <li><a href="{{base_path}}/login">Log in</a></li>
           </ul>
@@ -57,18 +58,20 @@
 
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
+      {{ msgs.message(message) }}
+      {{ msg.errors(errors) }}
       {% block content %}{% endblock %}
     </div>
 
     {% block body %}
       <!-- jQuery -->
-      <script src="{{base_path}}/vendor/jquery.min.js"></script>
+      <script src="{{ base_path }}/vendor/jquery.min.js"></script>
 
       <!-- Bootstrap (skriptitiedosto) -->
-      <script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script src="{{ base_path }}/vendor/bootstrap/js/bootstrap.min.js"></script>
 
       <!-- Oma skriptitiedostomme -->
-      <script src="{{base_path}}/assets/js/site.js"></script>
+      <script src="{{ base_path }}/assets/js/site.js"></script>
     {% endblock %}
   </body>
 </html>

@@ -7,23 +7,19 @@
     
     <ul>
         {% for event in live %}
-        <a href="{{event_path}}/{{event.id}}">
-            <li>{{event.name}}</li>
-        </a>
+            {{ btns.link("#{ paths.event(_context) }", "#{event.name}") }}
         {% endfor %}
     </ul>
 </div>
 
-{{btns.link("#{event_path}/new", "New event")}}
+{{ btns.link("#{ paths.event(_context, 'new') }", "New event") }}
 
 <div style="float:right">
     <h1>Most Recent</h1>
     
     <ul>
         {% for event in past %}
-        <a href="{{event_path}}/{{event.id}}">
-            <li>{{event.name}}</li>
-        </a>
+            {{ btns.link("#{ paths.event(_context) }", "#{event.name}") }}
         {% endfor %}
     </ul>
 </div>

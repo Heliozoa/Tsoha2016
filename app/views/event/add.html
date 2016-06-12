@@ -2,12 +2,9 @@
 
 {% block content %}
 
-{{msg.errors(errors)}}
+<h1>Adding a tournament to <a href="{{ paths.event(_context) }}">{{event.name}}</a> {{ btns.link("#{ paths.event(_context, 'edit') }", "Edit") }}</h1>
 
-<h1>Adding a tournament to <a href="{{event_path}}/{{event.id}}">{{event.name}}</a></h1>
-
-<form method="post" action="{{event_path}}/{{event.id}}/add">
-    
+<form method="post" action="{{ paths.event(_context, 'add') }}">
     <div class="form-group">
         <label>Name</label>
         <input name="name" class="form-control" placeholder="Fill in to distinguish e.g. a regular and a 3v3 Tournament, leave empty otherwise" type="text" autocomplete="off">
@@ -23,5 +20,6 @@
         <button type="submit" class="btn btn-primary">Add</button>
     </div>
 </form>
+
     
 {% endblock %}

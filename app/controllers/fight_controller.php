@@ -6,6 +6,6 @@ class FightController extends BaseController{
         $fight->linkTournament();
         $fight->tournament->linkEvent();
         $fight->tournament->linkGame();
-        View::make('fight/fight.html', array('fight' => $fight));
+        View::make('fight/fight.html', array('fight' => $fight, 'tournament' => $fight->tournament, 'event' => $fight->tournament->event));
     }
 }

@@ -1,0 +1,18 @@
+//en saanut toimimaan ilman että kaikki on yhdellä rivillä. Halusin olla 'kovakoodaamatta' osoitteita useampaan paikkaan ja päädyin tähän.
+
+//con on _context joka sisältää kutsuntaympäristön muuttujat, end on vapaaehtoinen loppupätkä esim 'edit' tai 'delete'
+{% macro game(con, end) %}
+    {{ con.base_path }}/games{% if con.game.id is not null %}/{{ con.game.id }}{% endif %}{% if end is not null %}/{{ end }}{% endif %}
+{% endmacro %}
+
+{% macro event(con, end) %}
+    {{ con.base_path }}/events{% if con.event.id is not null %}/{{ con.event.id }}{% endif %}{% if end is not null %}/{{ end }}{% endif %}
+{% endmacro %}
+
+{% macro tournament(con, end) %}
+    {{ con.base_path }}/events/{{ con.event.id }}/tournaments{% if con.tournament.id is not null %}/{{ con.tournament.id }}{% endif %}{% if end is not null %}/{{ end }}{% endif %}
+{% endmacro %}
+
+{% macro fight(con, end) %}
+    {{ con.base_path }}/events/{{ con.event.id }}/tournaments/{{ con.tournament.id }}/fights{% if con.fight.id is not null %}/{{ con.fight.id }}{% endif %}{% if end is not null %}/{{ end }}{% endif %}
+{% endmacro %}

@@ -3,15 +3,15 @@
 {% block content %}
 
 <h1>
-    <a href="{{base_path}}/events/{{tournament.event.id}}">{{tournament.event.name}}</a>
-    - {{tournament.game.name}}
+    <a href="{{ paths.tournament(_context) }}">{{ tournament.event.name }}</a>
+    - {{ tournament.game.name }}
 </h1>
 
 <h2>Fights</h2>
 <section id="fights">
     <ul>
     {% for fight in tournament.fights %}
-        <a href="{{base_path}}/fights/{{fight.id}}">
+        <a href="{{ paths.fight(_context) }}">
             <li>{{fight.name}}</li>
         </a>
     {% else %}

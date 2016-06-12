@@ -9,13 +9,20 @@
   });
   
   $routes->get('/register', function() {
-    TopController::register();
+    UserController::register();
+  });
+  
+  $routes->post('/register', function() {
+    //UserController::register();
   });
   
   $routes->get('/login', function() {
-    TopController::login();
+    UserController::login();
   });
   
+  $routes->post('/login', function() {
+    UserController::handle_login();
+  });
 
   $routes->get('/games', function() {
     GameController::index();
@@ -58,6 +65,10 @@
     EventController::store();
   });
   
+  $routes->get('/events/past', function() {
+    EventController::past();
+  });
+  
   $routes->get('/events/:id', function($id) {
     EventController::show($id);
   });
@@ -82,20 +93,16 @@
     EventController::destroy($id);
   });
   
-  $routes->get('/past_events', function() {
-    EventController::past();
-  });
   
-  
-  $routes->get('/tournaments/:id', function($id){
+  $routes->get('/events/:event_id/tournaments/:id', function($event_id, $id){
     TournamentController::show($id);
   });
   
-  $routes->post('/tournaments/:id/delete', function($id){
-    TournamentController::destroy($id);
+  $routes->post('/events/:event_id/tournaments/:id/delete', function($event_id, $id){
+    TournamentController::destroy($event_id, $id);
   });
   
   
-  $routes->get('/fights/:id', function($id){
+  $routes->get('/events/:event_id/tournaments/:tournament_id/fights/:id', function($event_id, $tournament_id, $id){
     FightController::show($id);
   });

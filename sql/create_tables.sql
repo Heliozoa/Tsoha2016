@@ -36,3 +36,10 @@ CREATE TABLE Fight(
     timecode    INTEGER         DEFAULT (0),
     results     varchar(20)
 );
+
+CREATE TABLE Users(
+    id SERIAL PRIMARY KEY,
+    username    varchar(20)     NOT NULL,
+    password    varchar(20)     NOT NULL,
+    super       boolean         NOT NULL
+);

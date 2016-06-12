@@ -2,11 +2,9 @@
 
 {% block content %}
     
-{{msg.errors(errors)}}
-    
     <h1>
         {{game.name}}
-        {{btns.link("#{game_path}/#{game.id}/edit", "Edit")}}
+        {{ btns.link("#{ paths.game(_context, 'edit')}", "Edit") }}
     </h1>
     <section>{{game.info}}</section>
     
@@ -15,7 +13,7 @@
     <ul>
         {% for event in events %}
         <li>
-            {{btns.link("#{event_path}/#{event.id}", "#{event.name}")}}
+            {{ btns.link("#{ paths.event(_context) }", "#{event.name}") }}
         </li>
         {% else %}
             <li>No tournaments found</li>

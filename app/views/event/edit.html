@@ -2,13 +2,11 @@
 
 {% block content %}
 
-{{msg.errors(errors)}}
-
-<h1>Editing <a href="{{event_path}}/{{event.id}}">{{event.name}}</a>
-    {{forms.destroy_button("#{event_path}/#{event.id}/delete")}}
+<h1>Editing <a href="{{ paths.event(_context) }}">{{event.name}}</a>
+    {{ forms.destroy_button("#{ paths.event(_context, 'delete') }") }}
 </h1>
     
-<form method="post" action="{{event_path}}/{{event.id}}/edit">
+<form method="post" action="{{ paths.event(_context , 'edit') }}">
     
     <div class="form-group">
         <label>Name</label>
@@ -24,11 +22,11 @@
         <input name="end_date" value="{{event.end_date}}" placeholder="YYYY-MM-DD" class="form-control" type="text" autocomplete="off">
         
         {% if event.live %}
-        <label>Live </label>
-        <input name="live" class="form-control" type="checkbox" checked>
+            <label>Live </label>
+            <input name="live" class="form-control" type="checkbox" checked>
         {% else %}
-        <label>Live </label>
-        <input name="live" class="form-control" type="checkbox">
+            <label>Live </label>
+            <input name="live" class="form-control" type="checkbox">
         {% endif %}
         
         <button type="submit" class="btn btn-primary">Save</button>
@@ -36,19 +34,19 @@
 </form>
 
 <br>
-{{btns.link("#{event_path}/#{event.id}/add", "Add tournament")}}
+{{ btns.link("#{ paths.event(_context, 'add') }", "Add tournament") }}
 
 <section>
     {% for tournament in event.tournaments %}
-        <h2>{{tournament.game.name}}
-            {{btns.link("#{tournament_path}/#{tournament.id}/add", "Add fight")}}
-            {{forms.destroy_button("#{tournament_path}/#{tournament.id}/delete")}}
+        <h2>{{ tournament.game.name }}
+            {{ btns.link("#{ paths.tournament(_context, 'add') }", "Add fight") }}
+            {{ forms.destroy_button("#{ paths.tournament(_context, 'delete') }") }}
         </h2>
         
         {% for fight in tournament.fights %}
-            <h3>{{fight.name}}
-                {{btns.link("#{fight_path}/#{fight_id}/edit", "Edit")}}
-                {{forms.destroy_button("#{fight_path}/#{fight.id}/delete")}}
+            <h3>{{ fight.name }}
+                {{ btns.link("#{ paths.fight(_context, 'edit') }", "Edit") }}
+                {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }", "Delete") }}
             </h3>
         {% endfor %}
     {% endfor %}

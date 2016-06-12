@@ -1,6 +1,11 @@
 # Tietokantasovelluksen esittelysivu
 
-##Mahdolliselle koodikatselmoijalle: ei haittaa, jos testaat asioiden poistoa, lisäämistä ja muokkausta siltä osin, kuin se sivustolla sattuu toimimaan
+###Admin
+####Username: super
+####Password: super
+###Normikäyttäjä
+####Username: basic
+####Password: basic
 
 Yleisiä linkkejä:
 

@@ -94,7 +94,7 @@ class Event extends BaseModel{
         $errors = array();
         
         if(strtotime($this->start_date) == false){
-            $errors[] = "The start date is formatted incorrectly.";
+            $errors[] = "The start date is formatted incorrectly. Please write it as YYYY-MM-DD.";
             $this->start_date = "1980-01-01";
         }else{
             $this->start_date = date("Y-m-d", strtotime($this->start_date));
@@ -107,7 +107,7 @@ class Event extends BaseModel{
         $errors = array();
         
         if(strtotime($this->end_date) == false){
-            $errors[] = "The end date is formatted incorrectly.";
+            $errors[] = "The end date is formatted incorrectly. Please write it as YYYY-MM-DD.";
             $this->end_date = "2030-01-01";
         }else{
             $this->end_date = date("Y-m-d", strtotime($this->end_date));

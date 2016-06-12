@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>{{event.name}}
-    {{btns.link("#{event_path}/#{event.id}/edit", "Edit")}}
+    {{ btns.link("#{ paths.event(_context, 'edit') }", "Edit") }}
 </h1>
 
 <h5>at {{event.location}} from {{event.start_date}} to {{event.end_date}}</h5>
@@ -12,11 +12,12 @@
     <ul>
     {% for tournament in event.tournaments %}
         <li>
-            {% set name = "#{tournament.game.name}" %}
             {% if tournament.name is not empty %}
-                {% set name = "{{name}} - {{tournament.name}}" %}
+                {% set name = "#{tournament.game.name} - #{tournament.name}" %}
+            {% else %}
+                {% set name = "#{tournament.game.name}" %}
             {% endif %}
-            {{btns.link("#{tournament_path}/#{tournament.id}", "#{name}", "primary")}}
+            {{ btns.link("#{ paths.tournament(_context) }", "#{name}") }}
         </li>
     {% else %}
         <li>No tournaments found</li>

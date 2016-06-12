@@ -6,7 +6,7 @@ class TournamentController extends BaseController{
         $tournament->linkEvent();
         $tournament->linkGame();
         $tournament->linkFights();
-        View::make('tournament/tournament.html', array('tournament' => $tournament));
+        View::make('tournament/tournament.html', array('tournament' => $tournament, 'event' => $tournament->event));
     }
     
     public static function store($event_id){
@@ -16,16 +16,15 @@ class TournamentController extends BaseController{
         $errors = $tournament->errors();
         if(count($errors) == 0){
             $tournament->save();
-            Redirect::to('/events/'.$event_id.'/add');
+            Redirect::to('/events/'.$event_id.'/add', array('message' => "Successfully added a tournament."));
         }else{
             Redirect::to('/events/'.$event_id.'/add', array('params' => $params, 'errors' => $errors));
         }
     }
     
-    public static function destroy($id){
+    public static function destroy($event_id, $id){
         $tournament = Tournament::make(array('id' => $id));
         $tournament->destroy();
-        //redirect oikeaan tapahtumaan?
-        Redirect::to('/events');
+        Redirect::to('/events/'.$event_id.'/edit');
     }
 }
