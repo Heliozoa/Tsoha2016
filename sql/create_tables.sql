@@ -29,12 +29,13 @@ CREATE TABLE Fight(
     tournament_id INTEGER REFERENCES Tournament(id),
     name        varchar(20)     NOT NULL,
     player1     varchar(20)     NOT NULL,
+    p1score     INTEGER         NOT NULL,
     player2     varchar(20)     NOT NULL,
+    p2score     INTEGER         NOT NULL,
     ordering    INTEGER         NOT NULL,
     winner1     boolean,
     video_url   varchar(20),
-    timecode    INTEGER         DEFAULT (0),
-    results     varchar(20)
+    timecode    INTEGER         DEFAULT (0)
 );
 
 CREATE TABLE Users(

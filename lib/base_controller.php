@@ -12,8 +12,11 @@
     }
 
     public static function check_logged_in(){
-      // Toteuta kirjautumisen tarkistus tähän.
-      // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
+      return isset($_SESSION['user']);
+    }
+
+    public static function super_logged_in(){
+      return self::check_logged_in() && self::get_user_logged_in()->super;
     }
 
   }

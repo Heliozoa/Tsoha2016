@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+<h1>New fight for {{event.name}} - {{tournament.name}}</h1>
+    
+<form method="post" action="{{ paths.tournament(_context, 'add') }}">
+    
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" value="{{params.name}}" placeholder="ex. 'Grand Finals'" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 1</label>
+        <input name="player1" value="{{params.player1}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 1 score</label>
+        <input name="p1score" value="{{params.p1score}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 2</label>
+        <input name="player2" value="{{params.player2}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 2 score</label>
+        <input name="p2score" value="{{params.p2score}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Order</label>
+        <input name="ordering" value="{{params.ordering}}" placeholder="Number, lower means higher priority, ex. Grand Finals should always be '1'" class="form-control" type="text" autocomplete="off">
+        
+        <label>Video URL</label>
+        <input name="video_url" value="{{params.video_url}}" placeholder="ex. iHhgbmmUL34" class="form-control" type="text" autocomplete="off">
+        
+        <label>Video timecode</label>
+        <input name="timecode" value="{{params.timecode}}" placeholder="Number of seconds into the video" class="form-control" type="text" autocomplete="off">
+        
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+{% endblock %}

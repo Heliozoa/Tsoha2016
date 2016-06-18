@@ -17,6 +17,7 @@ class EventController extends BaseController{
         $event->linkTournaments($id);
         foreach($event->tournaments as $tournament){
             $tournament->linkGame();
+            $tournament->setName();
         }
         View::make('event/event.html', array('event' => $event));
     }
@@ -83,7 +84,7 @@ class EventController extends BaseController{
         }
     }
     
-    public static function destroy($id){
+    public static function delete($id){
         $event = Event::make(array('id' => $id));
         $event->destroy();
         Redirect::to('/events', array('message' => "Event deleted"));

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+<h1>Editing <a href="{{ paths.fight(_context) }}">{{fight.name}}</a> for <a href="{{ paths.event(_context) }}">{{event.name}}</a> - <a href="{{ paths.tournament(_context) }}">{{tournament.name}}</a></h1>
+    
+<form method="post" action="{{ paths.fight(_context, 'edit') }}">
+    
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" value="{{fight.name}}" placeholder="ex. 'Grand Finals'" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 1</label>
+        <input name="player1" value="{{fight.player1}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 1 score</label>
+        <input name="p1score" value="{{fight.p1score}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 2</label>
+        <input name="player2" value="{{fight.player2}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Player 2 score</label>
+        <input name="p2score" value="{{fight.p2score}}" class="form-control" type="text" autocomplete="off">
+        
+        <label>Order</label>
+        <input name="ordering" value="{{fight.ordering}}" placeholder="Number, lower means higher priority, ex. Grand Finals should always be '1'" class="form-control" type="text" autocomplete="off">
+        
+        <label>Video URL</label>
+        <input name="video_url" value="{{fight.video_url}}" placeholder="ex. iHhgbmmUL34" class="form-control" type="text" autocomplete="off">
+        
+        <label>Video timecode</label>
+        <input name="timecode" value="{{fight.timecode}}" placeholder="Number of seconds into the video" class="form-control" type="text" autocomplete="off">
+        
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+{% endblock %}

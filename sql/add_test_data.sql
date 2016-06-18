@@ -11,7 +11,7 @@ INSERT INTO Tournament (event_id, game_id) VALUES (1,2);
 INSERT INTO Tournament (event_id, game_id) VALUES (2,1);
 INSERT INTO Tournament (event_id, game_id) VALUES (2,2);
 
-INSERT INTO Fight (name, tournament_id, player1, player2, ordering, winner1, video_url, results) VALUES ('Grand Finals', 2, 'BE|AO', 'ORZ|NOBI', 1, false, '8fvK0JOa0vg', '5-3');
+INSERT INTO Fight (name, tournament_id, player1, player2, ordering, winner1, video_url, p1score, p2score) VALUES ('Grand Finals', 2, 'BE|AO', 'ORZ|NOBI', 1, false, '8fvK0JOa0vg', 5, 3);
 
 INSERT INTO Users (username, password, super) VALUES ('super', 'super', true);
 INSERT INTO Users (username, password, super) VALUES ('basic', 'basic', false);

@@ -13,8 +13,7 @@ class GameController extends BaseController{
     }
     
     public static function create(){
-        $user = self::get_user_logged_in();
-        if($user && $user->super){
+        if(self::super_logged_in()){
             View::make('game/new.html');
         }else{
             Redirect::to('/games', array('errors' => array('Only an admin can add games.')));
@@ -34,12 +33,11 @@ class GameController extends BaseController{
     }
     
     public static function edit($id){
-        $user = self::get_user_logged_in();
-        if($user && $user->super){
+        if(self::super_logged_in()){
             $game = Game::find($id);
             View::make('game/edit.html', array('game' => $game));
         }else{
-            Redirect::to('/games', array('errors' => array('Only an admin can edit games.')));
+            Redirect::to('/games/'.$id, array('errors' => array('Only an admin can edit games.')));
         }
     }
     
@@ -56,7 +54,7 @@ class GameController extends BaseController{
         }
     }
     
-    public static function destroy($id){
+    public static function delete($id){
         $game = Game::make(array('id' => $id));
         $game->destroy();
         Redirect::to('/games');

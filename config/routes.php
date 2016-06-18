@@ -27,6 +27,7 @@
   $routes->post('/login', function() {
     UserController::handle_login();
   });
+  
 
   $routes->get('/games', function() {
     GameController::index();
@@ -49,7 +50,7 @@
   });
   
   $routes->post('/games/:id/delete', function($id) {
-    GameController::destroy($id);
+    GameController::delete($id);
   });
   
   $routes->get('/games/:id', function($id){
@@ -94,7 +95,7 @@
   });
   
   $routes->post('/events/:id/delete', function($id){
-    EventController::destroy($id);
+    EventController::delete($id);
   });
   
   
@@ -106,12 +107,16 @@
     TournamentController::add($id);
   });
   
+  $routes->post('/events/:event_id/tournaments/:id/add', function($event_id, $tournament_id){
+    FightController::store($event_id, $tournament_id);
+  });
+  
   $routes->get('/events/:event_id/tournaments/:id/edit', function($event_id, $id){
     TournamentController::edit($id);
   });
   
   $routes->post('/events/:event_id/tournaments/:id/delete', function($event_id, $id){
-    TournamentController::destroy($event_id, $id);
+    TournamentController::delete($event_id, $id);
   });
   
   
@@ -120,9 +125,13 @@
   });
   
   $routes->get('/events/:event_id/tournaments/:tournament_id/fights/:id/edit', function($event_id, $tournament_id, $id){
-    FightController::edit($id);
+    FightController::edit($event_id, $tournament_id, $id);
+  });
+  
+  $routes->post('/events/:event_id/tournaments/:tournament_id/fights/:id/edit', function($event_id, $tournament_id, $id){
+    FightController::update($event_id, $tournament_id, $id);
   });
   
   $routes->post('/events/:event_id/tournaments/:tournament_id/fights/:id/delete', function($event_id, $tournament_id, $id){
-    FightController::delete($id);
+    FightController::delete($event_id, $tournament_id, $id);
   });
