@@ -5,7 +5,7 @@ Sivustolla voi selata joko tällä hetkellä käynnissä olevia turnauksia, viim
 
 Turnauksen luoja saa avaimen, jota käyttämällä myös muut järjestäjät voivat kirjautumatta ylläpitää tuloksia. Ainoastaan turnauksen luoja voi tehdä isompia muutoksia, esim. muuttaa virheellisiä tietoja. Pelkkien tulosten lisäksi palveluun kirjataan myös, mitä hahmoja pelaajat ovat käyttäneet, jolloin tiedoista voidaan muodostaa erilaisia kiinnostavia tilastoja. Käynnissä oleviin turnauksiin voi lisätä stream-embedin ja loppuneille videon.
 
-En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md. **Fokus siirtyi viikolla 2 enemmän turnausten katsomiseen jälkeenpäin videoiden avulla.**
+En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md. **Osa aihemäärittelyn/suunnitelmien toiminnoista on vielä toteuttamatta, mutta projektin kannalta oleelliset asiat ovat valmiita. Esim update-keyt eivät tee mitään, vaan kaikilla kirjautuneilla käyttäjillä on tapahtumien muokkausoikeudet, ottelujen välillä navigointi on kömpelöä jne.**
 
 
 ##Käynnistys- / käyttöohje
