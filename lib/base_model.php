@@ -37,7 +37,7 @@
         return $array;
     }
     
-    //palauttaa olion muuttujat ilman id ja validators kenttiä
+    //palauttaa olion muuttujat ilman id ja validators kenttiä, sillä 'ylimääräiset' kentät aiheuttavat ongelmia SQL-kyselyiden suorituksessa.
     public function vars(){
         $vars = get_object_vars($this);
         unset($vars['id']);

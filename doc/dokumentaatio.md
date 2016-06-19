@@ -110,3 +110,11 @@ Timecode|Luku|Aika sekunneissa, jolloin videon tulee alkaa.
 Yksittäinen ottelu, joka on osa jotakin turnausta.
 
 ![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)
+
+##Järjestelmän yleisrakenne
+Sovellus noudattaa MVC-mallia. Kontrollerit, näkymät ja mallit sijaitsevat hakemistoissa app/controllers, app/views ja app/models.
+
+##Käyttöliittymä ja järjestelmän komponentit
+![Käyttöliittymä ja järjestelmän komponentit](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/kayttoliittyma_ja_jarjestelman_komponentit.png)
+
+Sivustolla on navigaatiopalkki jolla pääsee tapahtumien listaukseen, pelien listaukseen ja kirjautumissivulle. Kaikilta ottelusivuilta pääsee vastaaviin turnauksen ja tapahtuman esittelysivuihin, samoin kaikilta turnaussivuilta pääsee vastaavan tapahtuman esittelysivuun.

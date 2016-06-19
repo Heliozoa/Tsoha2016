@@ -9,6 +9,18 @@ class FightController extends BaseController{
         View::make('fight/fight.html', array('fight' => $fight, 'tournament' => $fight->tournament, 'event' => $fight->tournament->event));
     }
     
+    public static function edit($event_id, $tournament_id, $id){
+        if(self::check_logged_in()){
+            $fight = Fight::find($id);
+            $tournament = Tournament::find($tournament_id);
+            $tournament->setName();
+            $event = Event::find($event_id);
+            View::make('fight/edit.html', array('fight' => $fight, 'tournament' => $tournament, 'event' => $event));
+        } else {
+            Redirect::to('/events/'.$event_id.'/tournaments/'.$tournament_id, array('errors' => array('Log in to edit fights.')));
+        }
+    }
+    
     public static function store($event_id, $tournament_id){
         $params = $_POST;
         $params['tournament_id'] = $tournament_id;
@@ -20,14 +32,6 @@ class FightController extends BaseController{
         }else{
             Redirect::to('/events/'.$event_id.'/tournaments/'.$tournament_id.'/add', array('params' => $params, 'errors' => $errors));
         }
-    }
-    
-    public static function edit($event_id, $tournament_id, $id){
-        $fight = Fight::find($id);
-        $tournament = Tournament::find($tournament_id);
-        $tournament->setName();
-        $event = Event::find($event_id);
-        View::make('fight/edit.html', array('fight' => $fight, 'tournament' => $tournament, 'event' => $event));
     }
     
     public static function update($event_id, $tournament_id, $id){

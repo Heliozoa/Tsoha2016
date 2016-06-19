@@ -24,7 +24,7 @@ class Event extends BaseModel{
         return Event::make($row);
     }
     
-    public static function past(){
+    public static function find_past_events(){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = false ORDER BY end_date DESC');
         $query->execute();
         $rows = $query->fetchAll();
@@ -32,7 +32,7 @@ class Event extends BaseModel{
         return Event::makeAll($rows);
     }
     
-    public static function live(){
+    public static function find_live_events(){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE live = true ORDER BY end_date DESC');
         $query->execute();
         $rows = $query->fetchAll();
@@ -40,7 +40,7 @@ class Event extends BaseModel{
         return Event::makeAll($rows);
     }
     
-    public static function game($game_id){
+    public static function find_by_game($game_id){
         $query = DB::connection()->prepare('SELECT * FROM Event WHERE id IN (
                                            SELECT event_id FROM Tournament WHERE game_id = :game_id)');
         $query->execute(array('game_id' => $game_id));
@@ -50,7 +50,7 @@ class Event extends BaseModel{
     }
     
     public function linkTournaments(){
-        $this->tournaments = Tournament::event($this->id);
+        $this->tournaments = Tournament::find_by_event($this->id);
     }
     
     public function save(){

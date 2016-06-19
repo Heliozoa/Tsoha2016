@@ -10,7 +10,7 @@
 {{ btns.link("#{ paths.tournament(_context, 'add') }", "Add fight") }}
 
 {% for fight in tournament.fights %}
-<h3>{{ fight.name }}
+<h3><a href="{{ paths.fight(_context) }}">{{ fight.name }}</a>
     {{ btns.link("#{ paths.fight(_context, 'edit') }", "Edit") }}
     {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }", "Delete") }}
 </h3>

@@ -1,16 +1,16 @@
 # Tietokantasovelluksen esittelysivu
 
-###Admin
-####Username: super
-####Password: super
-###Normikäyttäjä
-####Username: basic
-####Password: basic
+####Admin
+Username: super
+Password: super
+####Normikäyttäjä
+Username: basic
+Password: basic
 
-Yleisiä linkkejä:
+####Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://madamada.users.cs.helsinki.fi/tournaments/)
-* [Linkki dokumentaatiooni (osin vähän vanhentunut, work in progress)](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
+* [Linkki dokumentaatiooni](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.md)
 
 ## Työn aihe
 Taistelupelien tulospalveluun voi kirjata eri taistelupelien turnausten kulkua ja tuloksia.

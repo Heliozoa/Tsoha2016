@@ -23,7 +23,7 @@ class Fight extends BaseModel{
         return Fight::make($row);
     }
     
-    public static function tournament($tournament_id){
+    public static function find_by_tournament($tournament_id){
         $query = DB::connection()->prepare('SELECT * FROM Fight WHERE tournament_id = :tournament_id ORDER BY ordering ASC');
         $query->execute(array('tournament_id' => $tournament_id));
         $rows = $query->fetchAll();

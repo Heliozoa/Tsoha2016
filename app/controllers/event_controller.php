@@ -2,14 +2,14 @@
 
 class EventController extends BaseController{
     public static function index(){
-        $live = Event::live();
-        $past = Event::past();
+        $live = Event::find_live_events();
+        $past = Event::find_past_events();
         View::make('event/index.html', array('live' => $live, 'past' => $past));    
     }
     
-    public static function past(){
-        $events = Event::past();
-        View::make('event/past.html', array('events' => $events));
+    public static function past_events(){
+        $events = Event::find_past_events();
+        View::make('event/past_events.html', array('events' => $events));
     }
     
     public static function show($id){
@@ -22,14 +22,36 @@ class EventController extends BaseController{
         View::make('event/event.html', array('event' => $event));
     }
     
-    public static function add($id){
-        $event = Event::find($id);
-        $games = Game::all();
-        View::make('event/add.html', array('event' => $event, 'games' => $games));
+    public static function create(){
+        if(self::check_logged_in()){
+            View::make('event/new.html');
+        } else {
+            Redirect::to('/events', array('errors' => array('Log in to create events.')));
+        }
     }
     
-    public static function create(){
-        View::make('event/new.html');
+    public static function edit($id){
+        if(self::check_logged_in()){
+            $event = Event::find($id);
+            $event->linkTournaments();
+            foreach($event->tournaments as $tournament){
+                $tournament->linkFights();
+                $tournament->linkGame();
+            }
+            View::make('event/edit.html', array('event' => $event));
+        } else {
+            Redirect::to('/events/'.$id, array('errors' => array('Log in to edit events.')));
+        }
+    }
+    
+    public static function add_tourmament($id){
+        if(self::check_logged_in()){
+            $event = Event::find($id);
+            $games = Game::all();
+            View::make('event/add_tournament.html', array('event' => $event, 'games' => $games));
+        } else {
+            Redirect::to('/events'.$id, array('errors' => array('Log in to add tournaments.')));
+        }
     }
     
     public static function store(){
@@ -53,16 +75,6 @@ class EventController extends BaseController{
         }else{
             Redirect::to('/events/new', array('params' => $params, 'errors' => $errors));
         }
-    }
-    
-    public static function edit($id){
-        $event = Event::find($id);
-        $event->linkTournaments();
-        foreach($event->tournaments as $tournament){
-            $tournament->linkFights();
-            $tournament->linkGame();
-        }
-        View::make('event/edit.html', array('event' => $event));
     }
     
     public static function update($id){

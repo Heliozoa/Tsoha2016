@@ -2,7 +2,7 @@
 
 {% block content %}
     
-<h1>New fight for {{event.name}} - {{tournament.name}}</h1>
+<h1>New fight for <a href="{{ paths.event(_context) }}">{{event.name}}</a> - <a href="{{ paths.tournament(_context) }}">{{tournament.name}}</a></h1>
     
 <form method="post" action="{{ paths.tournament(_context, 'add') }}">
     

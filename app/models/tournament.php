@@ -34,7 +34,7 @@ class Tournament extends BaseModel{
         return Tournament::make($row);
     }
     
-    public static function event($event_id){
+    public static function find_by_event($event_id){
         $query = DB::connection()->prepare('SELECT * FROM Tournament WHERE event_id = :event_id');
         $query->execute(array('event_id' => $event_id));
         $rows = $query->fetchAll();
@@ -42,7 +42,7 @@ class Tournament extends BaseModel{
         return Tournament::makeAll($rows);
     }
     
-    public static function game($game_id){
+    public static function find_by_game($game_id){
         $query = DB::connection()->prepare('SELECT * FROM Tournament WHERE game_id = :game_id');
         $query->execute(array('game_id' => $game_id));
         $rows = $query->fetchAll();
@@ -52,7 +52,7 @@ class Tournament extends BaseModel{
     
     public function linkFights(){
         if($this->fights == null){
-            $this->fights = Fight::tournament($this->id);
+            $this->fights = Fight::find_by_tournament($this->id);
         }
     }
     
@@ -70,9 +70,7 @@ class Tournament extends BaseModel{
     
     public function validate_name(){
         $errors = array();
-        if($this->name == ""){
-            $errors[] = "The name cannot be empty.";
-        } else if(strlen($this->name) > 20){
+        if(strlen($this->name) > 20){
             $errors[] = "The name cannot be longer than 20 characters.";
         }
         return $errors;

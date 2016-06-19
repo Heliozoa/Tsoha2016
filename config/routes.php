@@ -70,8 +70,8 @@
     EventController::store();
   });
   
-  $routes->get('/events/past', function() {
-    EventController::past();
+  $routes->get('/events/past_events', function() {
+    EventController::past_events();
   });
   
   $routes->get('/events/:id', function($id) {
@@ -79,7 +79,7 @@
   });
   
   $routes->get('/events/:id/add', function($id) {
-    EventController::add($id);
+    EventController::add_tournament($id);
   });
   
   $routes->post('/events/:id/add', function($id) {
@@ -104,7 +104,7 @@
   });
   
   $routes->get('/events/:event_id/tournaments/:id/add', function($event_id, $id){
-    TournamentController::add($id);
+    TournamentController::add_fight($id);
   });
   
   $routes->post('/events/:event_id/tournaments/:id/add', function($event_id, $tournament_id){
