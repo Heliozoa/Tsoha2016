@@ -145,6 +145,7 @@ class Event extends BaseModel{
     public function vars(){
         $vars = parent::vars();
         unset($vars['tournaments']);
+        unset($vars['stream_array']);
         return $vars;
     }
     

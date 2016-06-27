@@ -39,7 +39,7 @@
       if(isset($_SESSION['flash_message'])){
 
         $flash = json_decode($_SESSION['flash_message']);
-
+        
         foreach($flash as $key => $value){
           $content[$key] = $value;
         }

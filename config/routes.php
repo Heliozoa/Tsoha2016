@@ -115,6 +115,10 @@
     TournamentController::edit($id);
   });
   
+  $routes->post('/events/:event_id/tournaments/:id/edit', function($event_id, $id){
+    TournamentController::update($event_id, $id);
+  });
+  
   $routes->post('/events/:event_id/tournaments/:id/delete', function($event_id, $id){
     TournamentController::delete($event_id, $id);
   });

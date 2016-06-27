@@ -4,15 +4,27 @@
 
 <h1>Editing
     <a href="{{ paths.event(_context) }}">{{event.name}}</a>
-    - <a href="{{ paths.tournament(_context) }}">{{tournament.name}}</a>
+    - <a href="{{ paths.tournament(_context) }}">{{tournament.full_name}}</a>
     {{ forms.destroy_button("#{ paths.tournament(_context, 'delete') }") }}
 </h1>
+
+
+<form method="post" action="{{ paths.tournament(_context, 'edit') }}">
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" class="form-control" value="{{tournament.name}}" placeholder="Fill in to distinguish e.g. a regular and a 3v3 Tournament, leave empty otherwise" type="text" autocomplete="off">
+        
+        <br>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
 {{ btns.link("#{ paths.tournament(_context, 'add') }", "Add fight") }}
 
 {% for fight in tournament.fights %}
 <h3><a href="{{ paths.fight(_context) }}">{{ fight.name }}</a>
     {{ btns.link("#{ paths.fight(_context, 'edit') }", "Edit") }}
-    {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }", "Delete") }}
+    {{ forms.destroy_button("#{ paths.fight(_context, 'delete') }") }}
 </h3>
 {% endfor %}
     

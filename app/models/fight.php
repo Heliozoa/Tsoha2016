@@ -113,6 +113,7 @@ class Fight extends BaseModel{
     public function validate_timecode(){
         $errors = array();
         if($this->timecode == null){
+            $this->timecode = 0;
             return $errors;
         }else if(!is_numeric($this->timecode)){
             $errors[] = 'The timecode has to be numeric.';
@@ -126,9 +127,6 @@ class Fight extends BaseModel{
     public function validate_results(){
         $errors = array();
         if(!is_numeric($this->p1score) || !is_numeric($this->p2score)){
-            Kint::dump($this->p1score);
-            Kint::dump($this->p2score);
-            exit();
             $errors[] = 'The scores have to be numeric';
         }else if($this->p1score == $this->p2score){
             $errors[] = 'The scores cannot be the same.';

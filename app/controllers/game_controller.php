@@ -56,7 +56,12 @@ class GameController extends BaseController{
     
     public static function delete($id){
         $game = Game::make(array('id' => $id));
-        $game->destroy();
-        Redirect::to('/games');
+        $tournaments = Tournament::find_by_game($id);
+        if(count($tournaments) == 0){
+            $game->destroy();
+            Redirect::to('/games');
+        } else {
+            Redirect::to('/games/'.$id, array('errors' => array('Cannot delete a game for which tournaments still exist.')));
+        }
     }
 }

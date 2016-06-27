@@ -13,7 +13,7 @@ class FightController extends BaseController{
         if(self::check_logged_in()){
             $fight = Fight::find($id);
             $tournament = Tournament::find($tournament_id);
-            $tournament->setName();
+            $tournament->set_full_name();
             $event = Event::find($event_id);
             View::make('fight/edit.html', array('fight' => $fight, 'tournament' => $tournament, 'event' => $event));
         } else {

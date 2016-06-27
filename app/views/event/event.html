@@ -25,7 +25,7 @@
     <ul>
     {% for tournament in event.tournaments %}
         <li>
-            {{ btns.link("#{ paths.tournament(_context) }", "#{tournament.name}") }}
+            {{ btns.link("#{ paths.tournament(_context) }", "#{tournament.full_name}") }}
         </li>
     {% else %}
         <li>No tournaments found</li>

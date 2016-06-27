@@ -14,10 +14,10 @@ class EventController extends BaseController{
     
     public static function show($id){
         $event = Event::find($id);
-        $event->linkTournaments($id);
+        $event->linkTournaments();
         foreach($event->tournaments as $tournament){
             $tournament->linkGame();
-            $tournament->setName();
+            $tournament->set_full_name();
         }
         View::make('event/event.html', array('event' => $event));
     }
@@ -37,6 +37,7 @@ class EventController extends BaseController{
             foreach($event->tournaments as $tournament){
                 $tournament->linkFights();
                 $tournament->linkGame();
+                $tournament->set_full_name();
             }
             View::make('event/edit.html', array('event' => $event));
         } else {
@@ -44,7 +45,7 @@ class EventController extends BaseController{
         }
     }
     
-    public static function add_tourmament($id){
+    public static function add_tournament($id){
         if(self::check_logged_in()){
             $event = Event::find($id);
             $games = Game::all();
@@ -70,7 +71,7 @@ class EventController extends BaseController{
         $errors = $event->errors();
         if(count($errors) == 0){
             $event->save();
-            Redirect::to('/events/'.$event->id, array('message' => "Tournament added"));
+            Redirect::to('/events/'.$event->id, array('message' => "Event added"));
         }else{
             Redirect::to('/events/new', array('params' => $params, 'errors' => $errors));
         }
@@ -97,6 +98,14 @@ class EventController extends BaseController{
     
     public static function delete($id){
         $event = Event::make(array('id' => $id));
+        $tournaments = Tournament::find_by_event($id);
+        foreach($tournaments as $tournament){
+            $tournament->linkFights();
+            foreach($tournament->fights as $fight){
+                $fight->destroy();
+            }
+            $tournament->destroy();
+        }
         $event->destroy();
         Redirect::to('/events', array('message' => "Event deleted"));
     }

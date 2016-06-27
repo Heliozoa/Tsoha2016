@@ -31,7 +31,7 @@
         {% endif %}
         
         <label>Twitch channels</label>
-        <input name="stream_urls" value="{{event.stream_urls}}" placeholder="Comma separated, ex. 'capcomfighters,tekken'" class="form-control" type="text">
+        <input name="stream_urls" value="{{event.stream_urls}}" placeholder="Comma separated, ex. 'capcomfighters,tekken'" class="form-control" type="text" autocomplete="off">
         
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
@@ -43,7 +43,7 @@
 <section>
     {% for tournament in event.tournaments %}
         <h2>
-            <a href="{{ paths.tournament(_context) }}">{{ tournament.game.name }}</a>
+            <a href="{{ paths.tournament(_context) }}">{{tournament.full_name}}</a>
             {{ forms.destroy_button("#{ paths.tournament(_context, 'delete') }") }}
         </h2>
     {% endfor %}

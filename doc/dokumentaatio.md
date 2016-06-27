@@ -5,6 +5,11 @@ Työ on vielä work-in-progress siinä mielessä, että esim. päivitysavaimiin 
 
 
 
+##Tunnetut ongelmat
+lib/view.phpn set_flash_messagen $flash = json_decode($_SESSION['flash_message']) aiheuttaa joskus ongelmia jotka korjaantuvat "itsestään" kun sivua on käytetty hetken rivin ollessa kommentoituna. Debuggasin sen verran, että $flashin arvoksi tulee joskus urlin osa (esim. '/games/5') joka aiheuttaa errorin kun sitä yritetään käydä foreachilla läpi. En ymmärrä ongelmaa ollenkaan enkä lähtenyt sitä sen pidemmin selvittämään. Jätin koodin kommentoimatta jotta sivun viestit toimisivat. Ongelma tuli vastaan pari kertaa, kun jokin muu osa koodista tuotti virheen, ja tämän jälkeen koko sivu lakkasi toimimasta.
+
+
+
 ##Yleiskuva järjestelmästä
 
 ###Käyttötapaukset
@@ -131,6 +136,5 @@ Tyyppi|Käyttäjänimmi|Salasana
 ----|----|----
 Admin|super|super
 Tavallinen käyttäjä|basic|basic
-    
     
 

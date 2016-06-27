@@ -7,7 +7,7 @@
 <form method="post" action="{{ paths.event(_context, 'add') }}">
     <div class="form-group">
         <label>Name</label>
-        <input name="name" class="form-control" placeholder="Fill in to distinguish e.g. a regular and a 3v3 Tournament, leave empty otherwise" type="text" autocomplete="off">
+        <input name="name" class="form-control" value="{{params.name}}" placeholder="Fill in to distinguish e.g. a regular and a 3v3 Tournament, leave empty otherwise" type="text" autocomplete="off">
         
         <label>Game</label>
         <select name="game_id" class="form-control">

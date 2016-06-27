@@ -1,7 +1,7 @@
 <?php
 
 class Tournament extends BaseModel{
-    public $id, $name, $event, $game, $event_id, $game_id, $results, $fights;
+    public $id, $name, $full_name, $event, $game, $event_id, $game_id, $results, $fights;
     
     public function __construct($attributes){
         parent::__construct($attributes);
@@ -9,13 +9,9 @@ class Tournament extends BaseModel{
     }
     
     //voisi korvata helpommalla, jos selviää miten event/add.htmlän <option value="{{game.id}}">{{game.name}}</option> saisi palauttamaan myös game.namen konstruktorille.
-    public function setName(){
+    public function set_full_name(){
         $this->linkGame();
-        if($this->name == ""){
-            $this->name = $this->game->name;
-        } else {
-            $this->name = $this->name." ".$this->game->name;
-        }
+        $this->full_name = $this->name.' '.$this->game->name;
     }
     
     public static function all(){
@@ -99,6 +95,7 @@ class Tournament extends BaseModel{
         unset($vars['game']);
         unset($vars['fights']);
         unset($vars['results']);
+        unset($vars['full_name']);
         return $vars;
     }
     

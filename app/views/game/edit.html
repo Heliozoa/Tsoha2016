@@ -17,8 +17,8 @@
         <button type="submit" class="btn btn-primary">Save</button>
         <br>
         <br>
-        {{ forms.destroy_button("#{ paths.game(_context, 'delete') }") }}
     </div>
 </form>
+{{ forms.destroy_button("#{ paths.game(_context, 'delete') }") }}
 
 {% endblock %}
