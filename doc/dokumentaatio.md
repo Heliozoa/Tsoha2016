@@ -1,6 +1,8 @@
 ##Johdanto
 Taistelupelien turnauspalvelussa voi seurata sekä tämänhetkisiä että jo menneitä turnauksia. Sivustolla voi selata pelitapahtumia jotka koostuvat yhdestä tai useammasta turnauksesta. Turnaus liittyy aina johonkin peliin ja koostuu otteluista. Live-tapahtumien sivuilla on linkit stream-sivuille, kun taas vanhojen tapahtumien ottelusivuilla on video ottelusta. Työ on toteutettu ohjeiden mukaisesti PHP:llä ilman mitään ylimääräisiä systeemeitä.
 
+Työ on vielä work-in-progress siinä mielessä, että esim. päivitysavaimiin tai turnauksen tuloksiin liittyvää toimintaa ei ole toteutettu. Kuitenkin uskoisin että kaikki oleellinen toiminta on toteutettu ja projektin kannalta työ on valmis.
+
 
 
 ##Yleiskuva järjestelmästä
@@ -74,24 +76,26 @@ Location|Merkkijono|Tapahtumapaikka
 Start date|Date|Päivä jona turnaus alkaa
 End date|Date|Päivä jona turnaus loppuu
 Live|Boolean|Onko turnauksesta käynnissä stream
-Stream URLS|Array String|Streamien osoitteet
+Stream URLS|Merkkijono|Streamien osoitteet
 Update key|Merkkijono|Avain, jonka omaava käyttäjä voi päivittää turnauksen tuloksia.
 Tapahtuma, jossa voidaan pelata turnauksia yhdestä tai useammasta pelistä.
 
 ####Tietokohde: Tournament
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Results|String Array|Turnauksen loppusijoitukset
-Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Turnauksen jälkeen tiedetään sen loppusijoitukset. Toimii myös liitostauluna.
+Name|Merkkijono|Turnauksen nimi
+Results|Merkkijonotaulukko|Turnauksen loppusijoitukset
+Yksittäiseen peliin liittyvä turnaus, joka on osa jotain turnaustapahtumaa. Turnauksen jälkeen tiedetään sen loppusijoitukset. Toimii myös liitostauluna. Turnauksen nimi on vapaaehtoinen ja on olemassa, jotta mahdolliset saman tapahtuman saman pelin turnaukset voidaan erotella.
 
 ####Tietokohde: Fight
 Attribuutti|Arvojoukko|Kuvailu
 ----|----|----
-Name|Merkkijon|Ottelun nimi, esim. 'Grand Finals', 'Winners Finals' tai 'Top 32'
+Name|Merkkijono|Ottelun nimi, esim. 'Grand Finals', 'Winners Finals' tai 'Top 32'
 Player1|Merkkijono|Ottelun osapuoli
+P1score|Luku|Player1:n pisteet
 Player2|Merkkijono|Ottelun osapuoli
+P2score|Luku|Player2:n pisteet
 Winner1|Boolean|Voittiko pelaaja 1
-Results|Merkkijono|Ottelun lopputulos, esim. 3-2
 Ordering|Luku|Luku, joka kertoo missä järjestyksessä ottelut tulee näyttää (Finaalit viimeisenä, semifinaalit toiseksiviimeisenä, jne.)
 Video URL|Merkkijono|Linkki videoon tai streamiin ottelusta.
 Timecode|Luku|Aika sekunneissa, jolloin videon tulee alkaa.
