@@ -1,7 +1,7 @@
 ##Johdanto
 Taistelupelien turnauspalvelussa voi seurata sekä tämänhetkisiä että jo menneitä turnauksia. Sivustolla voi selata pelitapahtumia jotka koostuvat yhdestä tai useammasta turnauksesta. Turnaus liittyy aina johonkin peliin ja koostuu otteluista. Live-tapahtumien sivuilla on linkit stream-sivuille, kun taas vanhojen tapahtumien ottelusivuilla on video ottelusta. Työ on toteutettu ohjeiden mukaisesti PHP:llä ilman mitään ylimääräisiä systeemeitä.
 
-Työ on vielä work-in-progress siinä mielessä, että esim. päivitysavaimiin tai turnauksen tuloksiin liittyvää toimintaa ei ole toteutettu. Kuitenkin uskoisin että kaikki oleellinen toiminta on toteutettu ja projektin kannalta työ on valmis.
+Työ on vielä work-in-progress siinä mielessä, että esim. päivitysavaimiin tai turnauksen tuloksiin liittyvää toimintaa ei ole toteutettu. Kuitenkin uskoisin että kaikki oleellinen toiminta on toteutettu ja projektin kannalta työ on valmis. CEO2016:n Street Fighter V turnaus on melko valmis esimerkki.
 
 
 
