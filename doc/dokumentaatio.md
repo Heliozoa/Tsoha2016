@@ -1,40 +1,12 @@
 ##Johdanto
-Taistelupelien turnauspalvelussa (Hiihtokisojen tulospalvelu) voi seurata eri taistelupelien turnausten kulkua ja tuloksia.
-
-Sivustolla voi selata joko tällä hetkellä käynnissä olevia turnauksia, viimeisimpiä tuloksia tai esim. valita pelin, jonka turnauksia haluaa tarkastella. Rekisteröityneet käyttäjät voivat lisätä omia turnauksia, mutta vain ylläpitäjä voi lisätä uusia pelejä.
-
-Turnauksen luoja saa avaimen, jota käyttämällä myös muut järjestäjät voivat kirjautumatta ylläpitää tuloksia. Ainoastaan turnauksen luoja voi tehdä isompia muutoksia, esim. muuttaa virheellisiä tietoja. Pelkkien tulosten lisäksi palveluun kirjataan myös, mitä hahmoja pelaajat ovat käyttäneet, jolloin tiedoista voidaan muodostaa erilaisia kiinnostavia tilastoja. Käynnissä oleviin turnauksiin voi lisätä stream-embedin ja loppuneille videon.
-
-En tiedä web-sovellusten toteuttamisesta tarpeeksi, että osaisin sanoa mitään järkevää teknisemmistä asioista. Aion toteuttaa järjestelmän ohjeiden mukaan PHPlla. PDFän teko on myös hakusessa, siksi md. **Osa aihemäärittelyn/suunnitelmien toiminnoista on vielä toteuttamatta, mutta projektin kannalta oleelliset asiat ovat valmiita. Esim update-keyt eivät tee mitään, vaan kaikilla kirjautuneilla käyttäjillä on tapahtumien muokkausoikeudet, ottelujen välillä navigointi on kömpelöä jne.**
+Taistelupelien turnauspalvelussa voi seurata sekä tämänhetkisiä että jo menneitä turnauksia. Sivustolla voi selata pelitapahtumia jotka koostuvat yhdestä tai useammasta turnauksesta. Turnaus liittyy aina johonkin peliin ja koostuu otteluista. Live-tapahtumien sivuilla on linkit stream-sivuille, kun taas vanhojen tapahtumien ottelusivuilla on video ottelusta. Työ on toteutettu ohjeiden mukaisesti PHP:llä ilman mitään ylimääräisiä systeemeitä.
 
 
-##Käynnistys- / käyttöohje
-Työ löytyy osoitteesta ![madamada.users.cs.helsinki.fi/tournaments/](http://madamada.users.cs.helsinki.fi/tournaments/)
 
-####Käyttäjät:
-Tyyppi|Käyttäjänimmi|Salasana
-----|----|----
-Admin|super|super
-Tavallinen käyttäjä|basic|basic
-    
-    
-##Käyttäjäryhmät
-####Kirjautumaton
-Käyttäjä, joka ei ole kirjautunut järjestelmään.
+##Yleiskuva järjestelmästä
 
-####Kirjautunut
-Käyttäjä, joka on rekisteröitynyt ja kirjautunut järjestelmään.
-
-####Ylläpitäjä
-Sivuston omistaja. Ylläpitäjä on myös kirjautunut.
-
-####Turnauksen järjestäjä
-Käyttäjä, jolla on turnauksen päivitysavain. Voi olla Kirjautumaton tai Kirjautunut.
-
-
-##Käyttötapaukset
-
-![Käyttötapaukset](https://github.com/Heliozoa/mulk muTsoha-Bootstrap/blob/master/doc/k%C3%A4ytt%C3%B6kaavio.png)
+###Käyttötapaukset
+![Käyttötapaukset](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/k%C3%A4ytt%C3%B6kaavio.png)
 
 ####Kaikille tarjolla olevat käyttötapaukset
 
@@ -65,6 +37,22 @@ Ylläpitäjä voi muokata kaikkia turnauksia, ei vain itse luomiaan.
 
 #####Käyttäjien poisto:
 Ylläpitäjä voi poistaa käyttäjän.
+
+
+###Käyttäjäryhmät
+
+####Kirjautumaton
+Käyttäjä, joka ei ole kirjautunut järjestelmään.
+
+####Kirjautunut
+Käyttäjä, joka on rekisteröitynyt ja kirjautunut järjestelmään.
+
+####Ylläpitäjä
+Sivuston omistaja. Ylläpitäjä on myös kirjautunut.
+
+####Turnauksen järjestäjä
+Käyttäjä, jolla on turnauksen päivitysavain. Voi olla Kirjautumaton tai Kirjautunut.
+
 
 
 ##Järjestelmän tietosisältö
@@ -109,12 +97,36 @@ Video URL|Merkkijono|Linkki videoon tai streamiin ottelusta.
 Timecode|Luku|Aika sekunneissa, jolloin videon tulee alkaa.
 Yksittäinen ottelu, joka on osa jotakin turnausta.
 
+
+
+##Relaatiotietokantakaavio
 ![Relaatiotietokantakaavio](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/relaatiotietokantakaavio.png)
+
+
 
 ##Järjestelmän yleisrakenne
 Sovellus noudattaa MVC-mallia. Kontrollerit, näkymät ja mallit sijaitsevat hakemistoissa app/controllers, app/views ja app/models.
+
+
 
 ##Käyttöliittymä ja järjestelmän komponentit
 ![Käyttöliittymä ja järjestelmän komponentit](https://github.com/Heliozoa/Tsoha-Bootstrap/blob/master/doc/kayttoliittyma_ja_jarjestelman_komponentit.png)
 
 Sivustolla on navigaatiopalkki jolla pääsee tapahtumien listaukseen, pelien listaukseen ja kirjautumissivulle. Kaikilta ottelusivuilta pääsee vastaaviin turnauksen ja tapahtuman esittelysivuihin, samoin kaikilta turnaussivuilta pääsee vastaavan tapahtuman esittelysivuun.
+
+
+
+##Asennustiedot
+Palvelu käyttää PostgreSQL-tietokantaa.
+
+##Käynnistys- / käyttöohje
+Työ löytyy osoitteesta ![madamada.users.cs.helsinki.fi/tournaments/](http://madamada.users.cs.helsinki.fi/tournaments/)
+
+####Käyttäjät:
+Tyyppi|Käyttäjänimmi|Salasana
+----|----|----
+Admin|super|super
+Tavallinen käyttäjä|basic|basic
+    
+    
+

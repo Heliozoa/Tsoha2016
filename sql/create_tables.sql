@@ -12,7 +12,7 @@ CREATE TABLE Event(
     start_date  DATE,
     end_date    DATE,
     live        boolean         NOT NULL,
-    stream_urls varchar(20)[],
+    stream_urls varchar(200),
     update_key  varchar(10)     NOT NULL
 );
 

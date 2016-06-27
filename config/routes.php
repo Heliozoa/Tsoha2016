@@ -135,3 +135,7 @@
   $routes->post('/events/:event_id/tournaments/:tournament_id/fights/:id/delete', function($event_id, $tournament_id, $id){
     FightController::delete($event_id, $tournament_id, $id);
   });
+  
+  $routes->get('/events/:event_id/streams/:stream', function($event_id, $stream) {
+    StreamController::show($event_id, $stream);
+  });

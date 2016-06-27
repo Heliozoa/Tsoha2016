@@ -16,3 +16,7 @@
 {% macro fight(con, end) %}
     {{ con.base_path }}/events/{{ con.event.id }}/tournaments/{{ con.tournament.id }}/fights{% if con.fight.id is not null %}/{{ con.fight.id }}{% endif %}{% if end is not null %}/{{ end }}{% endif %}
 {% endmacro %}
+
+{% macro stream(con, end) %}
+    {{ con.base_path }}/events/{{ con.event.id }}/streams/{{ con.stream }}
+{% endmacro %}

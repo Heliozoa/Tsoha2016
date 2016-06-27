@@ -1,11 +1,11 @@
 <?php
 
 class Event extends BaseModel{
-    public $id, $name, $location, $start_date, $end_date, $live, $stream_urls, $update_key, $tournaments;
+    public $id, $name, $location, $start_date, $end_date, $live, $stream_urls, $stream_array, $update_key, $tournaments;
     
     public function __construct($attributes){
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_location', 'validate_start_date', 'validate_end_date', 'validate_date_order');
+        $this->validators = array('validate_name', 'validate_location', 'validate_start_date', 'validate_end_date', 'validate_date_order', 'validate_streams');
     }
     
     public static function all(){
@@ -58,11 +58,13 @@ class Event extends BaseModel{
         $query->execute($this->vars());
         $row = $query->fetch();
         $this->id = $row['id'];
+        $this->update_streams();
     }
     
     public function update($params){
-        $query = DB::connection()->prepare('UPDATE Event SET name = :name, location = :location, start_date = :start_date, end_date = :end_date, live = :live WHERE id = :id');
+        $query = DB::connection()->prepare('UPDATE Event SET name = :name, location = :location, start_date = :start_date, end_date = :end_date, live = :live, stream_urls = :stream_urls WHERE id = :id');
         $query->execute($params);
+        $this->update_streams();
     }
     
     public function destroy(){
@@ -130,6 +132,16 @@ class Event extends BaseModel{
         return $errors;
     }
     
+    public function validate_streams(){
+        $errors = array();
+        
+        if(strlen($this->stream_urls) > 200){
+            $errors[] = "The total length of stream URLs cannot exceed 200 characters.";
+        }
+        
+        return $errors;
+    }
+    
     public function vars(){
         $vars = parent::vars();
         unset($vars['tournaments']);
@@ -150,9 +162,14 @@ class Event extends BaseModel{
         if($row){
             $params = BaseModel::array_from_row($row, get_called_class());
             $event = new Event($params);
+            $event->update_streams();
             return $event;
         }
         
         return null;
+    }
+    
+    private function update_streams(){
+        $this->stream_array = explode(',',$this->stream_urls);
     }
 }

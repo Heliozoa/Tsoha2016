@@ -8,7 +8,20 @@
 
 <h5>at {{event.location}} from {{event.start_date}} to {{event.end_date}}</h5>
 
+{% if event.live %}
+<section id="streams">
+    <h4>Streams</h4>
+    <ul>
+    {% for stream in event.stream_array %}
+        <li>
+            {{ btns.link("#{ paths.stream(_context) }", "#{stream}") }}
+        </li>
+    {% endfor %}
+    </ul>
+</section>
+{% else %}
 <section id="tournaments">
+    <h4>Tournaments</h4>
     <ul>
     {% for tournament in event.tournaments %}
         <li>
@@ -19,5 +32,6 @@
     {% endfor %}
     </ul>
 </section>
+{% endif %}
     
 {% endblock %}

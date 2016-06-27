@@ -59,7 +59,6 @@ class EventController extends BaseController{
         
         //temp
         $params['update_key'] = "AAAA";
-        $params['stream_urls'] = "{}";
         
         if(!array_key_exists('live', $params)){
             $params['live'] = "false";

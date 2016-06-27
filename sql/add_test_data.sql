@@ -4,7 +4,7 @@ INSERT INTO Game (name, info) VALUES ('Tekken 7', 'Toistaiseksi vain arcadeissa 
 INSERT INTO Game (name, info) VALUES ('Tekken 7: Fated Retribution', 'Tekken 7:n kesällä tuleva päivitys. Julkaistaan joskus myös PS4:lle.');   
 
 INSERT INTO Event (name, location, start_date, end_date, live, update_key) VALUES ('EVO 2015', 'Las Vegas', '17-7-2015', '19-7-2015', false, 'ABCDEFG');
-INSERT INTO Event (name, location, start_date, end_date, live, stream_urls, update_key) VALUES ('EVO 2016', 'Las Vegas', '15-7-2016', '17-7-2016', true, '{"stream1", "stream2"}', 'abcdefg');
+INSERT INTO Event (name, location, start_date, end_date, live, stream_urls, update_key) VALUES ('EVO 2016', 'Las Vegas', '15-7-2016', '17-7-2016', true, 'stream1,stream2', 'abcdefg');
 
 INSERT INTO Tournament (event_id, game_id) VALUES (1,1);
 INSERT INTO Tournament (event_id, game_id) VALUES (1,2);

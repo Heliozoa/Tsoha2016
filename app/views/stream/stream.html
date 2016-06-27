@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+<style>
+    body {background-color:#0d0d0d;}
+    a {color:BurlyWood;}
+    h5 {color:LightSlateGray;}
+</style>
+
+    <h5>
+        <a href="{{ paths.event(_context) }}">{{event.name}}</a>
+         - {{ stream }}
+    </h5
+    
+    <section style="width:1280px;height:720px">
+        <iframe src="http://www.twitch.tv/{{stream}}/embed" frameborder="0" style="width:1280px;height:720px"></iframe>
+    </section>
+    
+{% endblock %}
