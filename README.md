@@ -1,10 +1,10 @@
 # Tietokantasovelluksen esittelysivu
 
 #### Admin
-Username: super
-Password: super
+Username: super  
+Password: super  
 #### Normikäyttäjä
-Username: basic
+Username: basic  
 Password: basic  
 
 #### Yleisiä linkkejä:
